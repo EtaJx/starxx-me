@@ -1,0 +1,37 @@
+const Koa = require('koa')
+const next = require('next')
+const koaBody = require('koa-body')
+const { CreateRouter } = require('./util/shootRouter')
+const Router = require('koa-router')
+
+const dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const handle = app.getRequestHandler()
+
+app.prepare().then(() => {
+  const koa = new Koa()
+  koa.use(koaBody())
+  const router = new Router()
+  CreateRouter({ // TODO 此处可添加别名对应不同的page
+    next: app,
+    router: router
+  })
+  router.get('*', async ctx => {
+    await handle(ctx.req, ctx.res)
+    ctx.respond = false
+  })
+
+  koa.use(async (ctx, next) => {
+    ctx.res.statusCode = 200
+    await next()
+  })
+
+  koa.use(router.routes())
+  koa.listen(3000, err => {
+    if (err) {
+      throw err
+    } else {
+      console.log(">Ready on http://localhost:3000")
+    }
+  })
+})
