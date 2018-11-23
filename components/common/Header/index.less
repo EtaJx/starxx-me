@@ -4,4 +4,22 @@
     width: 100%;
     height: auto;
     display: block;
-  }}
+  }
+}
+
+.contract-animate {
+  animation-name: contract;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+@keyframes contract {
+  from {
+    height: 500px;
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+    display: block;
+  }
+}

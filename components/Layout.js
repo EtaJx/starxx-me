@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import Header from './common/Header'
 import Nav from './common/Nav'
 
