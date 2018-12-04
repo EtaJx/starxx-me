@@ -1,5 +1,6 @@
 import Header from './common/Header'
 import Nav from './common/Nav'
+import { withRouter } from 'next/router'
 
 import './style.less'
 
@@ -13,4 +14,4 @@ const Layout = (props) => {
   )
 }
 
-export default Layout
+export default withRouter(Layout)

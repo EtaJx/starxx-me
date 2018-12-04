@@ -5,7 +5,7 @@ export default [
   },
   {
     label: '分类',
-    link: 'category'
+    link: '/category'
   },
   {
     label: '关于我',

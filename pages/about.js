@@ -1,6 +1,10 @@
+import Layout from '../components/Layout'
+
 const About = () => {
   return (
-    <div>Hello About</div>
+    <Layout>
+      i am about
+    </Layout>
   )
 }
 
