@@ -12,9 +12,18 @@ app.prepare().then(() => {
   const koa = new Koa()
   koa.use(koaBody())
   const router = new Router()
+  CreateRouter({
+    next: null,
+    router: koa,
+    routerPath: 'api',
+    isNext: false
+  })
+  // 处理路由刷新页面404的情况
   CreateRouter({ // TODO 此处可添加别名对应不同的page
     next: app,
-    router: router
+    router: router,
+    routerPath: '/pages',
+    isNext: true
   })
   router.get('*', async ctx => {
     await handle(ctx.req, ctx.res)

@@ -20,16 +20,17 @@ class Nav extends Component {
     return (
       <section className="hing-nav">
         <div className="hing-div__nav__avatar" id="avatarWrapper">
-          <img src="/static/imgs/avatar.png" id="avatar"/>
+          <img src="/static/imgs/avatar.png" id="avatar" />
         </div>
         <ul className="hing-ul__nav__group">
           {
             navs.map((nav, key) => {
               const { pathname } = this.props.router
               return (
-                <li className={`hing-li__nav__item ${ pathname == nav.link ? 'active' : ''}`} key={key}>
-                  <Link prefetch href={nav.link}><a>{nav.label}</a></Link>
-                  <span className="numbers">24</span>
+                <li className={`hing-li__nav__item ${pathname == nav.link ? 'active' : ''}`} key={key}>
+                  <Link prefetch href={nav.link}>
+                    <a>{nav.label}<span className="numbers">24</span></a>
+                  </Link>
                 </li>
               )
             })
