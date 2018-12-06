@@ -1,23 +1,21 @@
----
+```yaml
 title: react组件通讯
 date: 2017-03-30 22:01:46
 tags:
 - react
 categories:
 - react
+```
 
----
-
-### react组件通讯
 #### 父组件向子组件通讯
 父组件向子组件用过传props的方式向子组件进行通讯。
 
-```JavaScript
+```javascript
 class Parent extends Component {
     state = {
         msg: 'start'
     };
-    
+
     componentDidMount() {
         setTimeout( () => {
             this.setState({
@@ -25,7 +23,7 @@ class Parent extends Component {
             });
         }, 1000);
     }
-    
+
     render() {
         return <Child_1 msg={this.state.msg} />;
     }
