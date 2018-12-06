@@ -12,17 +12,20 @@ app.prepare().then(() => {
   const koa = new Koa()
   koa.use(koaBody())
   const router = new Router()
-  CreateRouter({
+
+  //TODO 此处应有一个filter
+  CreateRouter({ // api路由
     next: null,
-    router: koa,
+    shooter: koa,
     routerPath: 'api',
     isNext: false
   })
-  // 处理路由刷新页面404的情况
-  CreateRouter({ // TODO 此处可添加别名对应不同的page
+
+  // TODO 此处可添加别名对应不同的page
+  CreateRouter({ // 处理路由刷新页面404的情况
     next: app,
-    router: router,
-    routerPath: '/pages',
+    shooter: router,
+    routerPath: 'pages',
     isNext: true
   })
   router.get('*', async ctx => {
