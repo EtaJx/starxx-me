@@ -5,7 +5,7 @@ import '../lib/prism/prism.js'
 import '../lib/prism/prism.css'
 
 class Index extends Component {
-  static async getInitialProps({req}) {
+  static async getInitialProps() {
     const res = await fetch(`http://localhost:8080/api`)
     const json = await res.json()
     return {
