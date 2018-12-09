@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Link from 'next/link'
 import navs from 'constant/navs'
 import './index.less'
 import { withRouter } from 'next/router'
@@ -7,14 +6,6 @@ import { withRouter } from 'next/router'
 class Nav extends Component {
   constructor(props) {
     super(props)
-  }
-  componentDidMount() {
-    console.log(this.props)
-    // const timer = setTimeout(() => {
-    //   clearTimeout(timer)
-    //   document.getElementById('avatarWrapper').setAttribute('class', 'hing-div__nav__avatar avatar-animate')
-    //   document.getElementById('avatar').setAttribute('class', 'avatar-animate')
-    // }, 1000)
   }
   render() {
     return (
@@ -28,9 +19,7 @@ class Nav extends Component {
               const { pathname } = this.props.router
               return (
                 <li className={`hing-li__nav__item ${pathname == nav.link ? 'active' : ''}`} key={key}>
-                  {/* <Link prefetch href={nav.link}> */}
-                    <a href={nav.link}>{nav.label}<span className="numbers">24</span></a>
-                  {/* </Link> */}
+                  <a href={nav.link}>{nav.label}<span className="numbers">24</span></a>
                 </li>
               )
             })

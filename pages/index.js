@@ -1,30 +1,32 @@
 import Layout from '../components/Layout'
 import fetch from 'node-fetch'
 import React, { Component } from 'react'
-import '../lib/prism/prism.js'
-import '../lib/prism/prism.css'
+import List from '../components/index/List'
+
+const indexWrapper = {
+  width: '1200px',
+  display: 'block',
+  margin: '0 auto',
+  boxSizing: 'border-box',
+  padding: '20px 0'
+}
 
 class Index extends Component {
   static async getInitialProps() {
-    const res = await fetch(`http://localhost:8080/api`)
+    const res = await fetch(`http://localhost:8080/list`)
     const json = await res.json()
     return {
       ok: json.ok,
-      articles: json.articles
+      list: json.list
     }
   }
   render() {
-    const { articles } = this.props
+    const { list } = this.props
     return (
       <Layout>
-        <header>
-          <h3 style={{
-            textAlign: 'center'
-          }} dangerouslySetInnerHTML={{ __html: articles[0].header.title }}></h3>
-        </header>
-        <div style={{
-          padding: '0 10px'
-        }} dangerouslySetInnerHTML={{ __html: articles[0].html }}></div>
+        <div style={indexWrapper}>
+          <List list={list}/>
+        </div>
       </Layout>
     )
   }
