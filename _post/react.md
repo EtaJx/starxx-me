@@ -7,15 +7,16 @@ categories:
 - react
 ```
 
+### react组件通讯
 #### 父组件向子组件通讯
 父组件向子组件用过传props的方式向子组件进行通讯。
 
-```javascript
+```JavaScript
 class Parent extends Component {
     state = {
         msg: 'start'
     };
-
+    
     componentDidMount() {
         setTimeout( () => {
             this.setState({
@@ -23,7 +24,7 @@ class Parent extends Component {
             });
         }, 1000);
     }
-
+    
     render() {
         return <Child_1 msg={this.state.msg} />;
     }
