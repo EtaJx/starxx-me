@@ -28,9 +28,9 @@ class Nav extends Component {
               const { pathname } = this.props.router
               return (
                 <li className={`hing-li__nav__item ${pathname == nav.link ? 'active' : ''}`} key={key}>
-                  <Link prefetch href={nav.link}>
-                    <a>{nav.label}<span className="numbers">24</span></a>
-                  </Link>
+                  {/* <Link prefetch href={nav.link}> */}
+                    <a href={nav.link}>{nav.label}<span className="numbers">24</span></a>
+                  {/* </Link> */}
                 </li>
               )
             })
