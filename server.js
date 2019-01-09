@@ -8,20 +8,18 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+const koa = new Koa()
+const router = new Router()
+koa.use(koaBody())
+
+CreateRouter({
+  next: koa,
+  shooter: router,
+  routerPath: 'api',
+  isNext: false
+})
+
 app.prepare().then(() => {
-  const koa = new Koa()
-  koa.use(koaBody())
-  const router = new Router()
-
-  //TODO 此处应有一个filter
-  CreateRouter({ // api路由
-    next: null,
-    shooter: koa,
-    routerPath: 'api',
-    isNext: false
-  })
-
-  // TODO 此处可添加别名对应不同的page
   CreateRouter({ // 处理路由刷新页面404的情况
     next: app,
     shooter: router,
@@ -39,6 +37,7 @@ app.prepare().then(() => {
   })
 
   koa.use(router.routes())
+
   koa.listen(8080, err => {
     if (err) {
       throw err
