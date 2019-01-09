@@ -1,0 +1,11 @@
+{
+  "apps": [{
+    "name": "heathen",
+    "watch": false,
+    "script": "./server.js",
+    "env_production": {
+      "NODE_ENV": "production",
+      "PORT": 3000
+    }
+  }]
+}
