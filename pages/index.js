@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import fetch from 'node-fetch'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import List from '../components/index/List'
 
 const indexWrapper = {
@@ -11,24 +11,24 @@ const indexWrapper = {
   padding: '20px 0'
 }
 
-class Index extends Component {
-  static async getInitialProps() {
-    const res = await fetch(`http://localhost:8080/list`)
-    const json = await res.json()
-    return {
-      ok: json.ok,
-      list: json.list
-    }
-  }
-  render() {
-    const { list } = this.props
-    return (
-      <Layout>
-        <div style={indexWrapper}>
-          <List list={list}/>
-        </div>
-      </Layout>
-    )
+const Index = (props) => {
+  const [list] = useState(props.list)
+  return (
+    <Layout title={'个人首页'}>
+      <div style={indexWrapper}>
+        <List list={list} />
+      </div>
+    </Layout>
+  )
+}
+
+Index.getInitialProps = async ({ req }) => {
+  const baseUrl = `http://${req.headers['host']}`
+  const res = await fetch(`${baseUrl}/list`)
+  const json = await res.json()
+  return {
+    ok: json.ok,
+    list: json.list
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Link from 'next/link'
 import moment from 'moment'
 
 const listStyle = {
@@ -18,11 +19,13 @@ class List extends Component {
         {
           list.map((item, index) => (
             <li key={index}>
-              <h4>{item.title} <span style={{
-                fontWeight: 'normal',
-                color: '#999'
-              }}>{moment(item.date).utc().format('YYYY-MM-DD HH:mm:ss')}</span></h4>
-              <p></p>
+              <a href={`/content?index=${index}`}>
+                <h4>{item.title} <span style={{
+                  fontWeight: 'normal',
+                  color: '#999'
+                }}>{moment(item.date).utc().format('YYYY-MM-DD HH:mm:ss')}</span></h4>
+                <p></p>
+              </a>
             </li>
           ))
         }
