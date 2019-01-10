@@ -1,24 +1,27 @@
 const { parseHtml } = require('../lib/parseHtml')
+const sort = require('../lib/sort')
 
 module.exports = (router) => {
-  const index = (ctx, next) => {
+  const index = (ctx) => {
     const { index } = ctx.query
-    const { resMds } = parseHtml({
+    const { content } = parseHtml({
       markdownPath: '_post'
     })
+    const sortedContent = sort(content, 'content')
     ctx.body = {
       ok: true,
-      article: resMds[index]
+      article: sortedContent.reverse()[index]
     }
   }
 
-  const articleList = (ctx, next) => {
-    const { listMds } = parseHtml({
+  const articleList = (ctx) => {
+    const { list } = parseHtml({
       markdownPath: '_post'
     })
+    const sortedList = sort(list, 'list')
     ctx.body = {
       ok: true,
-      list: listMds
+      list: sortedList.reverse()
     }
   }
 

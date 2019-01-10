@@ -1,5 +1,5 @@
 ```yaml
-title: Go函数（1）
+title: Go函数(1)
 date: 2018-07-10 21:36:54
 tags:
 - Go

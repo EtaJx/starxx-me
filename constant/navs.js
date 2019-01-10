@@ -1,14 +1,17 @@
 export default [
   {
     label: '首页',
-    link: '/'
+    link: '/',
+    key: 'article'
   },
   // {
   //   label: '分类',
-  //   link: '/category'
+  //   link: '/category',
+  //   key: 'category'
   // },
   // {
   //   label: '关于我',
-  //   link: '/about'
+  //   link: '/about',
+  //   key: 'about'
   // }
 ]

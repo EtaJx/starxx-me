@@ -1,6 +1,7 @@
 import Layout from '../components/Layout'
 import fetch from 'node-fetch'
 import React, { useState } from 'react'
+import moment from 'moment'
 import '../lib/prism/prism.css'
 import '../lib/prism/prism'
 import 'static/content.less'
@@ -14,9 +15,27 @@ const Content = (props) => {
       <header className="content-header">
         <h4>{title}</h4>
       </header>
-      <div dangerouslySetInnerHTML={{
-        __html: content.html
-      }} className='content'></div>
+      <div className='content'>
+        <span className="content-time">{moment(date).utc().format('YYYY-MM-DD hh:mm:ss')}</span>
+        {/* <div className="content-category">
+          {
+            categories.map((category, index) => (
+              <span className="content-category" key={index}>{category}</span>
+            ))
+          }
+        </div> */}
+        <div className="content-tag">
+          {
+            tags.map((tag, index) => (
+              <span key={index}>{`#${tag}`}</span>
+            ))
+          }
+        </div>
+
+        <div dangerouslySetInnerHTML={{
+          __html: content.html
+        }}></div>
+      </div>
     </Layout>
   )
 }

@@ -1,21 +1,18 @@
 import Layout from '../components/Layout'
 import fetch from 'node-fetch'
 import React, { useState } from 'react'
+import 'static/index.less'
 import List from '../components/index/List'
-
-const indexWrapper = {
-  width: '1200px',
-  display: 'block',
-  margin: '0 auto',
-  boxSizing: 'border-box',
-  padding: '20px 0'
-}
+import Search from '../components/index/Search'
 
 const Index = (props) => {
   const [list] = useState(props.list)
   return (
-    <Layout title={'个人首页'}>
-      <div style={indexWrapper}>
+    <Layout title={'个人首页'} count={{
+      article: list.length
+    }}>
+      <div className="hing-div__index__wrapper">
+        <Search />
         <List list={list} />
       </div>
     </Layout>

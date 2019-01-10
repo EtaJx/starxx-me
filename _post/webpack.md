@@ -1,5 +1,5 @@
 ```yaml
-title: webpack学习笔记（官网指南，持续更新，2017/10/17）
+title: webpack学习笔记
 date: 2017-10-15 19:38:15
 tags:
 - webpack

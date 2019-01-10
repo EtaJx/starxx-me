@@ -1,5 +1,5 @@
 ```yaml
-title: What is the Fuck EDM and How to Do With That?🤔
+title: 记录一次EDM编码
 date: 2016-09-29 16:18:13
 tags: 
 - EDM

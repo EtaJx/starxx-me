@@ -6,7 +6,7 @@ import React from 'react'
 import './style.less'
 
 const Layout = (props) => {
-  const { title } = props
+  const { title, count } = props
   return (
     <div className="hing-div__wrapper">
       <Head>
@@ -14,7 +14,7 @@ const Layout = (props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Header />
-      <Nav />
+      <Nav {...count} />
       {props.children}
     </div>
   )

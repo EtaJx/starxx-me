@@ -19,7 +19,7 @@ class Nav extends Component {
               const { pathname } = this.props.router
               return (
                 <li className={`hing-li__nav__item ${pathname == nav.link ? 'active' : ''}`} key={key}>
-                  <a href={nav.link}>{nav.label}<span className="numbers">24</span></a>
+                  <a href={nav.link}>{nav.label}<span className="numbers">{this.props[nav.key]}</span></a>
                 </li>
               )
             })
