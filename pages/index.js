@@ -1,12 +1,12 @@
 import Layout from '../components/Layout'
 import fetch from 'node-fetch'
-import React, { useState } from 'react'
+import React from 'react'
 import 'static/index.less'
 import List from '../components/index/List'
 import Search from '../components/index/Search'
 
 const Index = (props) => {
-  const [list] = useState(props.list)
+  const { list } = props
   return (
     <Layout title={'个人首页'} count={{
       article: list.length

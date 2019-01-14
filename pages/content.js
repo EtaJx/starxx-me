@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import fetch from 'node-fetch'
-import React, { useState } from 'react'
+import React from 'react'
 import moment from 'moment'
 import '../lib/prism/prism.css'
 import '../lib/prism/prism'
@@ -8,8 +8,7 @@ import 'static/content.less'
 
 const Content = (props) => {
   const { article } = props
-  const [content] = useState(article)
-  const { header: { title, tags, categories, date } } = content
+  const { header: { title, tags, categories, date } } = article
   return (
     <Layout>
       <header className="content-header">
@@ -33,7 +32,7 @@ const Content = (props) => {
         </div>
 
         <div dangerouslySetInnerHTML={{
-          __html: content.html
+          __html: article.html
         }}></div>
       </div>
     </Layout>
