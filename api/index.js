@@ -1,31 +1,38 @@
-const { parseHtml } = require('../lib/parseHtml')
-const sort = require('../lib/sort')
+const { parseHtml } = require('../lib/parseHtml');
+const sort = require('../lib/sort');
+const info = require('../lib/parseResumeYaml');
 
 module.exports = (router) => {
   const index = (ctx) => {
-    const { index } = ctx.query
-    const { content } = parseHtml({
+    const { index } = ctx.query;
+    const { content, list } = parseHtml({
       markdownPath: '_post'
-    })
-    const sortedContent = sort(content, 'content')
+    });
+    const sortedContent = sort(content, 'content');
     ctx.body = {
-      ok: true,
-      article: sortedContent.reverse()[index]
-    }
-  }
+      article: sortedContent.reverse()[index],
+      articleCounts: list.length // 文章数量
+    };
+  };
 
   const articleList = (ctx) => {
     const { list } = parseHtml({
       markdownPath: '_post'
-    })
-    const sortedList = sort(list, 'list')
+    });
+    const sortedList = sort(list, 'list');
     ctx.body = {
-      ok: true,
       list: sortedList.reverse()
-    }
-  }
+    };
+  };
 
-  router.get('/api', index)
-  router.get('/list', articleList)
+  const getResume = (ctx) => {
+    ctx.body = {
+      info: info()
+    };
+  };
+
+  router.get('/api', index);
+  router.get('/list', articleList);
+  router.get('/resume', getResume);
   return router
 }

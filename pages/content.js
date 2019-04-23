@@ -7,10 +7,12 @@ import '../lib/prism/prism'
 import 'static/content.less'
 
 const Content = (props) => {
-  const { article } = props
+  const { article, articleCounts } = props
   const { header: { title, tags, categories, date } } = article
   return (
-    <Layout>
+    <Layout title={title} count={{
+      article: articleCounts
+    }}>
       <header className="content-header">
         <h4>{title}</h4>
       </header>
@@ -43,9 +45,9 @@ Content.getInitialProps = async ({ req, query }) => {
   const { index } = query
   const baseURL = `http://${req.headers['host']}`
   const res = await fetch(`${baseURL}/api?index=${index}`)
-  const { ok, article } = await res.json()
+  const { article, articleCounts } = await res.json()
   return {
-    ok, article
+    article, articleCounts
   }
 }
 

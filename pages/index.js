@@ -24,7 +24,6 @@ Index.getInitialProps = async ({ req }) => {
   const res = await fetch(`${baseUrl}/list`)
   const json = await res.json()
   return {
-    ok: json.ok,
     list: json.list
   }
 }

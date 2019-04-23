@@ -9,9 +9,9 @@ export default [
   //   link: '/category',
   //   key: 'category'
   // },
-  // {
-  //   label: '关于我',
-  //   link: '/about',
-  //   key: 'about'
-  // }
+  {
+    label: '关于我',
+    link: '/about',
+    key: 'about'
+  }
 ]
