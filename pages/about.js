@@ -23,6 +23,11 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    const nav = document.querySelector('.hing-nav');
+    const originClass = nav.getAttribute('class')
+    
+  }
   render() {
     const { intro = [], style = {}, resume, evaluation } = this.props;
     return (

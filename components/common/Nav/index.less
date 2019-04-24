@@ -49,8 +49,6 @@
   }
   span{
     display: block;
-    // height: 26px;
-    // line-height: 26px;
     width: 100%;
     text-align: center;
     font-size: 16px;
@@ -62,21 +60,41 @@
 .active{
   border-bottom: 4px solid #abb8c2;
 }
+.fade-out{
+  animation-name: fadeOut;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 1s;
+}
 .avatar-animate {
   animation-name: avatar;
   animation-fill-mode: forwards;
   animation-duration: 2s;
 }
-@keyframes avatar{
+.nav-fade-out{
+  animation-name: navFadeout;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  animation-duration: 1s;
+}
+@keyframes fadeOut{
   from {
-    width: 200px;
-    height: 200px;
-    bottom: -27px;
+    height: 60px;
   }
   to {
-    width: 60px;
-    height: 60px;
-    bottom: -0px;
+    height: 0px;
   }
 }
+
+@keyframes navFadeout{
+  from {
+    height: 60px;
+  }
+  to {
+    height: 0px;
+    opacity: 0;
+    overflow: hidden;
+  }
+}
+
 
