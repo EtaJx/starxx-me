@@ -101,20 +101,23 @@ Smarty3存在的默认行为，在smarty2.X的版本中，需要在数组后加�
 
 * show属性是在{foreach}循环执行之后，检测循环是是否显示数据的判断,show是一个布尔值.
 
-`{function}
-{function name=menu level=0}
-{function menu level=0}
-	<ul class="level{$level}">
-		{foreach $data as $entry}
-			{if is_array($entry)}
-				<li>{$entry@key}</li>
-				{menu data=$entry level=$level+1}
-			{else}
-				<li>{$entry}</li>
-			{/if}
-		{/foreach}
-	</ul>
-{/function}`
+	```php
+	{function}
+	{function name=menu level=0}
+	{function menu level=0}
+		<ul class="level{$level}">
+			{foreach $data as $entry}
+				{if is_array($entry)}
+					<li>{$entry@key}</li>
+					{menu data=$entry level=$level+1}
+				{else}
+					<li>{$entry}</li>
+				{/if}
+			{/foreach}
+		</ul>
+	{/function}
+	```
+
 * 调用函数{menu data=$menu}
 
 * {if}{elseif}{/if}空变量的处理：使用默认值来代替空变量，使用default修饰器来处理
