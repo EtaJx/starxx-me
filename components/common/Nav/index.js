@@ -9,11 +9,11 @@ class Nav extends Component {
   }
   render() {
     return (
-      <section className="hing-nav fade-out">
+      <section className="hing-nav">
         <div className="hing-div__nav__avatar" id="avatarWrapper">
           <img src="/static/imgs/avatar.png" id="avatar" />
         </div>
-        <ul className="hing-ul__nav__group nav-fade-out">
+        <ul className="hing-ul__nav__group">
           {
             navs.map((nav, key) => {
               const { pathname } = this.props.router

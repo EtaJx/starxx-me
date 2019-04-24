@@ -1,10 +1,10 @@
-import Layout from '../components/Layout';
+import Layout from 'components/Layout';
 import React from 'react';
 import Head from 'next/head';
 import fetch from 'node-fetch';
-import ResumeHeader from '../components/resume/Header';
-import ResumeContent from '../components/resume/Content';
-import ResumeSelfEvaluation from '../components/resume/SelfEvaluation';
+import ResumeHeader from 'components/resume/Header';
+import ResumeContent from 'components/resume/Content';
+import ResumeSelfEvaluation from 'components/resume/SelfEvaluation';
 
 /**
  * getInitialProps can not be used in children components. Only in pages.
@@ -24,9 +24,8 @@ class Index extends React.Component {
     super(props);
   }
   componentDidMount() {
-    const nav = document.querySelector('.hing-nav');
-    const originClass = nav.getAttribute('class')
-    
+    document.querySelector('.hing-nav').className = 'hing-nav fade-out';
+    document.querySelector('.hing-ul__nav__group').className = 'hing-ul__nav__group nav-fade-out';
   }
   render() {
     const { intro = [], style = {}, resume, evaluation } = this.props;
