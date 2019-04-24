@@ -30,7 +30,7 @@ class Index extends React.Component {
   render() {
     const { intro = [], style = {}, resume, evaluation } = this.props;
     return (
-      <Layout title={'个人简历'}>
+      <Layout title={'江湖之大，冷暖自知'}>
         <Head>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
         </Head>
