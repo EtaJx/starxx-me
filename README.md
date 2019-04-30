@@ -6,6 +6,7 @@
 - [ ] 显示preview
 - [x] 动态router
 - [x] 文章详情页面
-- [ ] 命令创建article模版
+- [x] 命令创建article模版（创建了简单模版，思考改进）
+- [x] github hooks
 - [ ] 搜索功能
-- [ ] 分类页面?
+- [ ] 分类页面
