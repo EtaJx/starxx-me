@@ -1818,6 +1818,11 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
+commander@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.npmjs.org/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
+  integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
+
 commander@~2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
@@ -2951,6 +2956,13 @@ hash.js@^1.0.0, hash.js@^1.0.3:
   dependencies:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
+
+heathen-cli@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.npmjs.org/heathen-cli/-/heathen-cli-1.1.3.tgz#02ab2ede4bc690a6b45f7a8b4d8b9be508455a69"
+  integrity sha512-esg+oenwOeTPEtkvyHV0lcuzXSXivJG/e6gkpkngHWl7qqrXjq33IBSxh4yjPHU0eUicXEvsmNsJW+rZVDvyeQ==
+  dependencies:
+    commander "^2.20.0"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
