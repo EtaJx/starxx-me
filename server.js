@@ -38,11 +38,11 @@ app.prepare().then(() => {
 
   koa.use(router.routes())
 
-  koa.listen(8080, err => {
+  koa.listen(process.env.PORT || 3000, err => {
     if (err) {
       throw err
     } else {
-      console.log(">Ready on http://localhost:8080")
+      console.log(`>Ready on http://localhost:${process.env.PORT || 3000}`)
     }
   })
 })

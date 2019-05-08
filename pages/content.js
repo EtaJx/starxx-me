@@ -8,7 +8,7 @@ import 'static/content.less'
 
 const Content = (props) => {
   const { article, articleCounts } = props
-  const { header: { title, tags, categories, date } } = article
+  const { header: { title, tags = [], categories, date } } = article
   return (
     <Layout title={title} count={{
       article: articleCounts
