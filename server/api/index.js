@@ -1,7 +1,7 @@
 const { parseHtml } = require('../../lib/parseHtml');
 const sort = require('../../lib/sort');
 const info = require('../../lib/parseResumeYaml');
-const { handleXOR } = require('../../lib/md5');
+const { handleXOR } = require('../../lib/encrypt');
 const fs = require('fs');
 const path = require('path');
 const rootPath = path.join(__dirname, '../../');

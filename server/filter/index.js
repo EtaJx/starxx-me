@@ -1,4 +1,4 @@
-const { getOTP } = require('../../lib/md5');
+const { getOTP } = require('../../lib/encrypt');
 const filter = (option) => {
   return async (ctx, next) => {
     getOTP();

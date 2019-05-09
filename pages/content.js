@@ -2,8 +2,8 @@ import Layout from '../components/Layout'
 import fetch from 'node-fetch'
 import React from 'react'
 import moment from 'moment'
-import '../lib/prism/prism.css'
-import '../lib/prism/prism'
+import 'lib/prism/prism.css'
+import 'lib/prism/prism'
 import 'static/content.less'
 
 const Content = (props) => {
