@@ -1,6 +1,10 @@
-const { parseHtml } = require('../lib/parseHtml');
-const sort = require('../lib/sort');
-const info = require('../lib/parseResumeYaml');
+const { parseHtml } = require('../../lib/parseHtml');
+const sort = require('../../lib/sort');
+const info = require('../../lib/parseResumeYaml');
+const { handleXOR } = require('../../lib/md5');
+const fs = require('fs');
+const path = require('path');
+const rootPath = path.join(__dirname, '../../');
 
 module.exports = (router) => {
   const index = (ctx) => {
@@ -26,8 +30,16 @@ module.exports = (router) => {
   };
 
   const getResume = (ctx) => {
+    const key = fs.readFileSync(`${rootPath}/key`).toString().split(' ')[0]
+    let infomation = info()
+    infomation.data.intro.forEach(item => {
+      if (!isNaN(item.val)) { // 如果是电话号码
+        item.val = handleXOR(item.val, key)
+      }
+      return item
+    })
     ctx.body = {
-      info: info()
+      info: infomation
     };
   };
 
