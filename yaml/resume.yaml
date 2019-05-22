@@ -21,7 +21,6 @@ data:
           -  熟悉Git常用命令
           -  熟悉React
           -  了解Nodejs，Vue
-          -  了解Docker
           -  有简单的Nginx部署Nodejs项目经验
          key: skill
       experience: 
@@ -29,13 +28,15 @@ data:
            time: 2018年5月-至今
            department: 研发部门
            projects: 
-            -  使用React, mobx和antd-design维护、开发公司后台管理系统
+            -  使用React + mobx和antd-design维护、开发公司后台管理系统
             -  使用React + mobx开发面向用户的<a href="https://www.hunliji.com/p/wedding/Public/admin/local_merchant_react/dist/index.html#/localMerchant/home">商家后台</a>
             -  使用React + mobx开发<a href="https://www.hunliji.com/p/wedding/Public/admin/desktop_app_set/dist/index.html#/index"> 水镜系统 可视化配置页面</a>
+            -  使用Nextjs重构<a target="_blank" href="https://www.hunliji.com/merchant/list_2/">商家列表页</a>，<a target="_blank" href="https://www.hunliji.com/example/list_2/">案例列表页</a>，<a target="_blank" href="https://www.hunliji.com/package/list_2/">套餐列表页</a>
             -  使用vue开发维护内嵌APP的页面
-            -  尝试使用Vue ssr重构移动端首页
+            -  使用verdaccio搭建内部私有npm仓库
+            -  尝试使用Vue SSR重构移动端首页
+            -  基于Nuxtjs开发vue通用脚手架wap_vue，用于ssr和静态页面开发
             -  尝试使用Node.js进行服务端开发，拉新活动项目
-            -  尝试使用Docker进行前端的CI
            key: hunliji
            skills: 
             -  React
@@ -81,4 +82,4 @@ data:
     -  愿意折腾，用自己的vps做一做看一看墙内无法做的事情
     -  足够的耐心与清晰的思维应该是一个程序员的标配。特立独行或许能让人拥有一个有趣的灵魂，但是遵守规范才能使大家更好的协同工作。
     -  清晰的认识到自己现在缺乏什么，该去寻找什么。
-    -  简历源代码<a href="https://github.com/Neras/nextjs-resume">https://github.com/Neras/nextjs-resume</a>
+    -  简历源代码<a href="https://github.com/Neras/nextjs-personal">https://github.com/Neras/nextjs-personal</a>
