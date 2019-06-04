@@ -14,7 +14,7 @@ class Content extends React.Component {
         <div className="hing-div__experience">
           <h4>工作经历</h4>
           {
-            experience.map((val, index) => {
+            experience.map((val) => {
               return (
                 <div className="hing-div__content" key={val.key}>
                   <p><b>{val.company}</b></p>
