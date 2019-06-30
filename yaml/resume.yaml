@@ -24,8 +24,8 @@ data:
           -  有简单的Nginx部署Nodejs项目经验
          key: skill
       experience: 
-        -  company: 杭州火烧云科技有限公司
-           time: 2018年5月-至今
+        -  company: 杭州火烧云科技有限公司（婚礼纪）
+           time: 2018年5月-2019年6月
            department: 研发部门
            projects: 
             -  使用React + mobx和antd-design维护、开发公司后台管理系统
@@ -47,10 +47,8 @@ data:
            time: 2017年6月-2018年3月
            department: ''
            projects:
-             -  维护jQuery老项目，同时使用的Nodejs，Reactjs，Vue进行新项目的开发
-             -  与百度合作，将人脸检测功能提取嵌入百度，<a href="https://open.c2h4.org/c2h42baidu/#/">https://open.c2h4.org/c2h42baidu/#/</a>
+             -  与百度合作，将人脸检测功能提取嵌入百度，<a href="https://open.c2h4.org/c2h42baidu/#/">人脸检测功能</a>
              -  使用Vue重构公司后台管理系统，基于饿了么前端组件搭建
-             -  构建小程序内使用的APP主要功能模块，供外部使用
              -  使用React+nextjs重构APP内的<a href="https://api.c2h4.org/show/article/579">文章页面</a>，添加功能的同时加快页面渲染
              -  使用React和canvas开发<a href="https://fun.c2h4.org/">活动h5页面</a> 
            key: yixi
@@ -80,5 +78,5 @@ data:
   evaluation: 
     -  愿意折腾，用自己的vps做一做看一看墙内无法做的事情
     -  足够的耐心与清晰的思维应该是一个程序员的标配。特立独行或许能让人拥有一个有趣的灵魂，但是遵守规范才能使大家更好的协同工作。
-    -  清晰的认识到自己现在缺乏什么，该去寻找什么。
-    -  简历源代码<a href="https://github.com/Neras/nextjs-personal">https://github.com/Neras/nextjs-personal</a>
+    - 不把自己仅局限在前端工程师
+    -  <a href="https://github.com/Neras/nextjs-personal">简历源代码</a>
