@@ -20,7 +20,7 @@ data:
           -  熟悉JavaScript，掌握ES6/7，并运用到实际项目中
           -  熟悉Git常用命令
           -  熟悉React
-          -  了解Nodejs，Vue
+          -  了解Nodejs，Vue，TypeScript
           -  有简单的Nginx部署Nodejs项目经验
          key: skill
       experience: 
@@ -31,7 +31,7 @@ data:
             -  使用React + mobx和antd-design维护、开发公司后台管理系统
             -  使用React + mobx开发面向用户的<a href="https://www.hunliji.com/p/wedding/Public/admin/local_merchant_react/dist/index.html#/localMerchant/home">商家后台</a>
             -  使用React + mobx开发<a href="https://www.hunliji.com/p/wedding/Public/admin/desktop_app_set/dist/index.html#/index"> 水镜系统 可视化配置页面</a>
-            -  使用Nextjs重构<a target="_blank" href="https://www.hunliji.com/merchant/list_2/">商家列表页</a>，<a target="_blank" href="https://www.hunliji.com/example/list_2/">案例列表页</a>，<a target="_blank" href="https://www.hunliji.com/package/list_2/">套餐列表页</a>
+            -  使用Nextjs重构<a target="_blank" href="https://www.hunliji.com/merchant/list_2/">商家列表页</a>，<a target="_blank" href="https://www.hunliji.com/example/list_2/">案例列表页</a>，<a target="_blank" href="https://www.hunliji.com/package/list_2/">套餐列表页</a>，抽离可复用公共组件
             -  使用vue开发维护内嵌APP的页面
             -  使用verdaccio搭建内部私有npm仓库
             -  尝试使用Vue SSR重构移动端首页
