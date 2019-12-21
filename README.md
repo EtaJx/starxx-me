@@ -11,3 +11,5 @@
 - [ ] 搜索功能
 - [ ] 分类页面
 - [ ] 文章编辑页面（点击保存，直接保存至本地）
+- [ ] English Version Resume
+- [ ] 接入Google Drive API

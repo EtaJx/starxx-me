@@ -4,3 +4,6 @@ node_modules
 *-error.log
 .vscode
 key
+.idea/
+util/token.json
+credentials.json
