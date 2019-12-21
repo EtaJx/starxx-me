@@ -9,23 +9,29 @@ const rootPath = path.join(__dirname, '../../');
 module.exports = (router) => {
   const index = (ctx) => {
     const { index } = ctx.query;
-    const { content, list } = parseHtml({
+    const { content: postContent, list: postList } = parseHtml({
       markdownPath: '_post'
     });
-    const sortedContent = sort(content, 'content');
+    const { content: filesContent, list: filesList } = parseHtml({
+      markdownPath: '_files'
+    });
+    const contents = [...sort(postContent, 'content').reverse(), ...filesContent];
     ctx.body = {
-      article: sortedContent.reverse()[index],
-      articleCounts: list.length // 文章数量
+      article: contents[index],
+      articleCounts: postList.length + filesList.length // 文章数量
     };
   };
 
   const articleList = (ctx) => {
-    const { list } = parseHtml({
+    const { list: postList } = parseHtml({
       markdownPath: '_post'
     });
-    const sortedList = sort(list, 'list');
+    const { list: fileList } = parseHtml({
+      markdownPath: '_files'
+    });
+    const sortedPostList = sort(postList, 'list');
     ctx.body = {
-      list: sortedList.reverse()
+      list: [...sortedPostList.reverse(), ...fileList]
     };
   };
 
