@@ -3,7 +3,7 @@ const path = require('path');
 const readline = require('readline');
 const { google } = require('googleapis');
 
-const SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = 'token.json';
 const CREDENTIALS_PATH = 'credentials.json';
 const ROOT_PATH = path.join(process.cwd(), '..');
@@ -37,49 +37,74 @@ const getAccessToken = (oAuth2Client, callback) => {
           callback(oAuth2Client);
         });
       });
+    } else {
+      oAuth2Client.setCredentials(JSON.parse(token.toString()));
+      callback(oAuth2Client);
     }
-
-    oAuth2Client.setCredentials(JSON.parse(token.toString()));
-    callback(oAuth2Client);
   });
 };
 
-const listFiles = auth => {
+const downloadFiles = (drive, GDfiles = []) => {
+  const getFile = (file, fileTemp) => {
+    drive.files.get({
+      fileId: file.id,
+      alt: 'media'
+    }, { responseType: 'stream' }, (fileErr, res) => {
+      if (fileErr) {
+        console.log('download failed ', file.name, fileErr);
+      } else {
+        res.data.on('end', () => {
+          console.log(`${file.name} download successfully`);
+        }).on('error', downloadErr => {
+          console.log('download error', downloadErr, file.name);
+        }).pipe(fileTemp);
+      }
+    });
+  };
+
+  fs.readdir(`${ROOT_PATH}/_files`, (err, files) => {
+    if (err) {
+      fs.mkdir(`${ROOT_PATH}/_files`, _err => {
+        if (_err) {
+          throw Error(`创建文件夹失败, ${_err}`);
+        }
+        GDfiles.map(file => {
+          const fileTemp = fs.createWriteStream(`${ROOT_PATH}/_files/${file.name}`);
+          getFile(file, fileTemp);
+        });
+      });
+    } else {
+      GDfiles.map(file => {
+        const fileTemp = fs.createWriteStream(`${ROOT_PATH}/_files/${file.name}`);
+        getFile(file, fileTemp);
+      });
+    }
+  })
+};
+
+const listFiles = (auth, pageToken) => {
+  console.log('pageToken', pageToken);
   const drive = google.drive({
     version: 'v3',
     auth
   });
-  // drive.files.list({
-  //   q: "mimeType='application/vnd.google-apps.folder'",
-  //   fields: 'nextPageToken, files(id, name)',
-  //   spaces: 'drive',
-  //   pageToken: null
-  // }, (err, res) => {
-  //   if (err) {
-  //     throw error('get folders fialed', err);
-  //   }
-  //   res.data.files.map(folder => console.log('folder', folder.name));
-  // });
   drive.files.list({
-    pageSize: 30,
-    fields: 'nextPageToken, files(id, name)'
+    pageSize: 10,
+    q: "mimeType='text/markdown'",
+    fields: 'nextPageToken, files(id, name)',
+    spaces: 'drive',
+    pageToken
   }, (err, res) => {
+    const { data: { files, nextPageToken = null }} = res;
     if (err) {
-      throw Error('The API returned an error: ', + err);
+      throw Error(`get files failed ${err} ${res}`);
     }
-    const files = res.data.files;
-    console.log(Object.keys(res.data));
-    console.log('Files:');
-    if (files.length) {
-      files.map(file => {
-        drive.files.get({fileId: file.id}).then(res => {
-          console.log('res', res.data);
-        })
-      });
-      // files.map(file => console.log(file.name));
-    } else {
-      console.log('There is no file');
+    downloadFiles(drive, files);
+    pageToken = nextPageToken;
+    if (pageToken) {
+      listFiles(auth, pageToken)
     }
+    console.log('after pageToken', pageToken);
   });
 };
 
