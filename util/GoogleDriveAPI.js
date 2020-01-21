@@ -82,8 +82,10 @@ const downloadFiles = (drive, GDfiles = []) => {
   })
 };
 
+// 递归下载所有文件
+// 文件过多的风险？
+// 先忽略不计
 const listFiles = (auth, pageToken) => {
-  console.log('pageToken', pageToken);
   const drive = google.drive({
     version: 'v3',
     auth
@@ -97,14 +99,13 @@ const listFiles = (auth, pageToken) => {
   }, (err, res) => {
     const { data: { files, nextPageToken = null }} = res;
     if (err) {
-      throw Error(`get files failed ${err} ${res}`);
+      throw Error(`download file failed ${err} ${res}`);
     }
     downloadFiles(drive, files);
     pageToken = nextPageToken;
     if (pageToken) {
       listFiles(auth, pageToken)
     }
-    console.log('after pageToken', pageToken);
   });
 };
 

@@ -13,4 +13,5 @@
 - [ ] 文章编辑页面（点击保存，直接保存至本地）
 - [ ] English Version Resume
 - [x] 接入Google Drive API
-- [ ] 部署到服务器
+- [x] 部署到服务器
+- [ ] 自动拉去Google Drive 上的文件
