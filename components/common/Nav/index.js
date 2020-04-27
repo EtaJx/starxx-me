@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import navs from 'constant/navs'
+import { navs } from 'config/navs.config';
 import './index.less'
 import { withRouter } from 'next/router'
 

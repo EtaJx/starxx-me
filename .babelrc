@@ -8,7 +8,7 @@
         "alias": {
           "constant": "./constant",
           "components": "./components",
-          "util": "./util",
+          "util": "./util"
         }
       }
     ]

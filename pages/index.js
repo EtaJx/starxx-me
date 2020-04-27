@@ -1,10 +1,10 @@
-import Layout from '../components/Layout'
+import Layout from 'components/Layout'
 import fetch from 'node-fetch'
 import React from 'react'
 import 'static/index.less'
-import List from '../components/index/List'
-import Search from '../components/index/Search'
-import useArticleList from '../hooks/useArticleList';
+import List from 'components/index/List'
+import Search from 'components/index/Search'
+import useArticleList from 'hooks/useArticleList';
 
 const Index = (props) => {
   const { list } = props;

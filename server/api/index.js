@@ -15,7 +15,7 @@ module.exports = (router) => {
     const { content: filesContent, list: filesList } = parseHtml({
       markdownPath: '_files'
     });
-    const contents = [...sort(postContent, 'content').reverse(), ...filesContent];
+    const contents = [...filesContent, ...sort(postContent, 'content').reverse()];
     ctx.body = {
       article: contents[index],
       articleCounts: postList.length + filesList.length // 文章数量
@@ -31,7 +31,7 @@ module.exports = (router) => {
     });
     const sortedPostList = sort(postList, 'list');
     ctx.body = {
-      list: [...sortedPostList.reverse(), ...fileList]
+      list: [ ...fileList, ...sortedPostList.reverse()]
     };
   };
 

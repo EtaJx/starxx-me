@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon NODE_ENV=development PORT=10086 node server.js",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "pm2 start ua.json --env=production",
     "article": "heathen -n"
   },
@@ -13,6 +13,8 @@
     "article": "./bin/article"
   },
   "dependencies": {
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
     "axios": "^0.19.0",
@@ -37,6 +39,7 @@
     "cheerio": "^1.0.0-rc.3",
     "less-loader": "^5.0.0",
     "nodemon": "^2.0.2",
+    "typescript": "^3.8.3",
     "webpack": "^4.41.4"
   }
 }

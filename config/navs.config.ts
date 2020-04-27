@@ -1,4 +1,9 @@
-export default [
+type NavsConfig = {
+  label: string,
+  link: string,
+  key: string
+}
+export const navs: NavsConfig[] =  [
   {
     label: '首页',
     link: '/',

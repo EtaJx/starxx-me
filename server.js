@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const next = require('next');
 const koaBody = require('koa-body');
-const { CreateRouter } = require('./util/shootRouter');
+const { CreateRouter } = require('./lib/shootRouter');
 const filter = require('./server/filter/index');
 const Router = require('koa-router');
 

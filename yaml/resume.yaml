@@ -15,7 +15,7 @@ data:
   resume:
       skill:
          title: 掌握技能
-         val: 
+         val:
           -  熟悉html，理解Web语义化，理解盒子模型，手写符合W3C标准的css代码
           -  熟悉JavaScript，掌握ES6/7，并运用到实际项目中
           -  熟悉Git常用命令
@@ -23,11 +23,24 @@ data:
           -  了解Nodejs，Vue，TypeScript
           -  有简单的Nginx部署Nodejs项目经验
          key: skill
-      experience: 
+      experience:
+        -  company: 杭州美间科技有限公司
+           time: 2019年7月-至今
+           department: ''
+           projects:
+             - 使用React开发维护主站：<a href="https://www.meijian.io" target="_black">美间官网</a>，包括但不限于日常需求以及公共组件的开发
+             - 使用React + TypeScript开发：公共通知组件（主站登录后右上角通知功能）；单品公共编辑弹窗组件重构
+             - 使用Nodejs基于prerender.io开源的prerender库二次开发自建公司内部使用的prerender服务，优化搜索引擎的爬取，提升SEO
+           key: meijian
+           skills:
+              - React
+              - React Hooks
+              - Nodejs
+              - TypeScript
         -  company: 杭州火烧云科技有限公司（婚礼纪）
            time: 2018年5月-2019年6月
            department: 研发部门
-           projects: 
+           projects:
             -  使用React + mobx和antd-design维护、开发公司后台管理系统
             -  使用React + mobx开发面向用户的<a href="https://www.hunliji.com/p/wedding/Public/admin/local_merchant_react/dist/index.html#/localMerchant/home">商家后台</a>
             -  使用React + mobx开发<a href="https://www.hunliji.com/p/wedding/Public/admin/desktop_app_set/dist/index.html#/index"> 水镜系统 可视化配置页面</a>
@@ -38,7 +51,7 @@ data:
             -  基于Nuxtjs开发vue通用脚手架wap_vue，用于ssr和静态页面开发
             -  尝试使用Node.js进行服务端开发，拉新活动项目
            key: hunliji
-           skills: 
+           skills:
             -  React
             -  mobx
             -  Vue
@@ -50,7 +63,7 @@ data:
              -  与百度合作，将人脸检测功能提取嵌入百度，<a href="https://open.c2h4.org/c2h42baidu/#/">人脸检测功能</a>
              -  使用Vue重构公司后台管理系统，基于饿了么前端组件搭建
              -  使用React+nextjs重构APP内的<a href="https://api.c2h4.org/show/article/579">文章页面</a>，添加功能的同时加快页面渲染
-             -  使用React和canvas开发<a href="https://fun.c2h4.org/">活动h5页面</a> 
+             -  使用React和canvas开发<a href="https://fun.c2h4.org/">活动h5页面</a>
            key: yixi
            skills:
              -  Node.js
@@ -75,7 +88,7 @@ data:
              -  lite
              -  jQuery
              -  smarty
-  evaluation: 
+  evaluation:
     -  愿意折腾，用自己的vps做一做看一看墙内无法做的事情
     -  足够的耐心与清晰的思维应该是一个程序员的标配。特立独行或许能让人拥有一个有趣的灵魂，但是遵守规范才能使大家更好的协同工作。
     - 不把自己仅局限在前端工程师
