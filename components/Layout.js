@@ -1,9 +1,10 @@
+import React from 'react';
 import Header from './common/Header'
 import Nav from './common/Nav'
 import { withRouter } from 'next/router'
 import Head from 'next/head';
 import Footer from './common/Footer';
-import React from 'react'
+import 'highlight.js/styles/atom-one-light.css';
 import './style.less'
 
 const Layout = (props) => {

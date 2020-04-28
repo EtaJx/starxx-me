@@ -2,8 +2,6 @@ import Layout from '../components/Layout'
 import fetch from 'node-fetch'
 import React from 'react'
 import moment from 'moment'
-import 'lib/prism/prism.css'
-import 'lib/prism/prism'
 import 'static/content.less'
 
 const Content = (props) => {
@@ -35,7 +33,7 @@ const Content = (props) => {
 
         <div dangerouslySetInnerHTML={{
           __html: article.html
-        }}></div>
+        }} />
       </div>
     </Layout>
   )
