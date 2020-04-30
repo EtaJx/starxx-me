@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon NODE_ENV=development PORT=10086 node server.js",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "pm2 start ua.json --env=production",
     "article": "heathen -n"
   },
