@@ -6,11 +6,11 @@ const fs = require('fs');
 const path = require('path');
 const rootPath = path.join(__dirname, '../../');
 const BLACK_LIST = ['meijian', 'mj', '公司', 'meijian-development', '公司相关', 'login', '转正']; // 这样就没意思了，想办法变通一下过滤方法
-const fetchedGDList = require('../../data.json');
 const { parseContent } = require('../../lib/parseHtml');
 
 module.exports = (router) => {
   const index = async ctx => {
+    const fetchedGDList = require('../../data.json');
     const { token } = ctx.query;
     const { title, date, html } = await parseContent(token);
     ctx.body = {
@@ -24,6 +24,7 @@ module.exports = (router) => {
   };
 
   const articleList = (ctx) => {
+    const fetchedGDList = require('../../data.json');
     const GDList = fetchedGDList.reduce((prevItem, item) => {
       const [folderId, currentStructure] = item;
       const { folderName, files } = currentStructure;

@@ -22,9 +22,8 @@ CreateRouter({
   isNext: false
 });
 
-initGD();
-
-app.prepare().then(() => {
+app.prepare().then(async () => {
+  await initGD();
   CreateRouter({ // 处理路由刷新页面404的情况
     next: app,
     shooter: router,
