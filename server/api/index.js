@@ -5,33 +5,40 @@ const { handleXOR } = require('../../lib/encrypt');
 const fs = require('fs');
 const path = require('path');
 const rootPath = path.join(__dirname, '../../');
+const BLACK_LIST = ['meijian', 'mj', '公司', 'meijian-development', '公司相关', 'login', '转正']; // 这样就没意思了，想办法变通一下过滤方法
+const fetchedGDList = require('../../data.json');
+const { parseContent } = require('../../lib/parseHtml');
 
 module.exports = (router) => {
-  const index = (ctx) => {
-    const { index } = ctx.query;
-    const { content: postContent, list: postList } = parseHtml({
-      markdownPath: '_post'
-    });
-    const { content: filesContent, list: filesList } = parseHtml({
-      markdownPath: '_files'
-    });
-    const contents = [...filesContent, ...sort(postContent, 'content').reverse()];
+  const index = async ctx => {
+    const { token } = ctx.query;
+    const { title, date, html } = await parseContent(token);
     ctx.body = {
-      article: contents[index],
-      articleCounts: postList.length + filesList.length // 文章数量
+      article: {
+        title,
+        date,
+        html
+      },
+      articleCounts: fetchedGDList.length // 文章数量
     };
   };
 
   const articleList = (ctx) => {
-    const { list: postList } = parseHtml({
-      markdownPath: '_post'
-    });
-    const { list: fileList } = parseHtml({
-      markdownPath: '_files'
-    });
-    const sortedPostList = sort(postList, 'list');
+    const GDList = fetchedGDList.reduce((prevItem, item) => {
+      const [folderId, currentStructure] = item;
+      const { folderName, files } = currentStructure;
+      files.forEach(item => {
+        item.date = item.modifiedTime;
+        item.title = item.name;
+      })
+      return [...prevItem, ...files];
+    }, [])
+    const sortedPostList = sort(GDList.filter(item => {
+      const fileName = item.name.replace('.md', '');
+      return !!fileName && !BLACK_LIST.includes(fileName)
+    })).reverse();
     ctx.body = {
-      list: [ ...fileList, ...sortedPostList.reverse()]
+      list: [...sortedPostList]
     };
   };
 

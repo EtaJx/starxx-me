@@ -4,6 +4,7 @@ const koaBody = require('koa-body');
 const { CreateRouter } = require('./lib/shootRouter');
 const filter = require('./server/filter/index');
 const Router = require('koa-router');
+const { initGD } = require('./lib/GoogleDriveAPI');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -20,6 +21,8 @@ CreateRouter({
   routerPath: 'server/api',
   isNext: false
 });
+
+initGD();
 
 app.prepare().then(() => {
   CreateRouter({ // 处理路由刷新页面404的情况

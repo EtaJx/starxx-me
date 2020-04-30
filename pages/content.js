@@ -6,7 +6,7 @@ import 'static/content.less'
 
 const Content = (props) => {
   const { article, articleCounts } = props
-  const { header: { title, tags = [], categories, date } } = article
+  const { title, date, html } = article
   return (
     <Layout title={title} count={{
       article: articleCounts
@@ -16,23 +16,8 @@ const Content = (props) => {
       </header>
       <div className='content'>
         <span className="content-time">{moment(date).utc().format('YYYY-MM-DD hh:mm:ss')}</span>
-        {/* <div className="content-category">
-          {
-            categories.map((category, index) => (
-              <span className="content-category" key={index}>{category}</span>
-            ))
-          }
-        </div> */}
-        <div className="content-tag">
-          {
-            tags.map((tag, index) => (
-              <span key={index}>{`#${tag}`}</span>
-            ))
-          }
-        </div>
-
         <div dangerouslySetInnerHTML={{
-          __html: article.html
+          __html: html
         }} />
       </div>
     </Layout>
@@ -40,9 +25,9 @@ const Content = (props) => {
 }
 
 Content.getInitialProps = async ({ req, query }) => {
-  const { index } = query
+  const { token } = query
   const baseURL = `http://${req.headers['host']}`
-  const res = await fetch(`${baseURL}/api?index=${index}`)
+  const res = await fetch(`${baseURL}/api?token=${token}`)
   const { article, articleCounts } = await res.json()
   return {
     article, articleCounts

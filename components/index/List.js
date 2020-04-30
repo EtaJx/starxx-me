@@ -13,17 +13,19 @@ const List = (props) => {
   return (
     <ul style={listStyle}>
       {
-        list.map((item, index) => (
-          <li key={index}>
-            <a href={`/content?index=${index}`} className="hing-a__list__link">
-              <h4>{item.title} <span style={{
-                fontWeight: 'normal',
-                color: '#999'
-              }}>{moment(item.date).utc().format('YYYY-MM-DD HH:mm:ss')}</span></h4>
-              <p></p>
-            </a>
-          </li>
-        ))
+        list.map(item  => {
+          const { id, date, title } = item;
+          return (
+            <li key={id}>
+              <a href={`/content?token=${id}`} className="hing-a__list__link">
+                <h4>{title} <span style={{
+                  fontWeight: 'normal',
+                  color: '#999'
+                }}>{moment(date).utc().format('YYYY-MM-DD HH:mm:ss')}</span></h4>
+                <p></p>
+              </a>
+            </li>
+          )})
       }
     </ul>
   )

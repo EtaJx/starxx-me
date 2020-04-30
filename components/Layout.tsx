@@ -7,7 +7,7 @@ import Footer from './common/Footer';
 import 'highlight.js/styles/atom-one-light.css';
 import './style.less'
 
-const Layout = (props) => {
+const Layout: React.FC<any> = (props: any) => {
   const { title, count } = props
   return (
     <>
