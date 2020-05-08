@@ -1,14 +1,19 @@
 import React from 'react'
 import moment from 'moment'
+import { ListItem } from 'typings/list';
 import './style/list.less'
 
-const listStyle = {
+const listStyle: React.CSSProperties = {
   listStyle: 'none',
   padding: 0,
   margin: 0
 }
 
-const List = (props) => {
+type ListProps = {
+  list: ListItem[]
+}
+
+const List: React.FC<ListProps> = props => {
   const { list } = props
   return (
     <ul style={listStyle}>
@@ -22,13 +27,12 @@ const List = (props) => {
                   fontWeight: 'normal',
                   color: '#999'
                 }}>{moment(date).utc().format('YYYY-MM-DD HH:mm:ss')}</span></h4>
-                <p></p>
               </a>
             </li>
           )})
       }
     </ul>
-  )
+  );
 }
 
 export default List

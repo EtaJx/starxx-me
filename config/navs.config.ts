@@ -1,9 +1,9 @@
-type NavsConfig = {
+export type NavItem = {
   label: string,
   link: string,
   key: string
 }
-export const navs: NavsConfig[] =  [
+export const navs: NavItem[] =  [
   {
     label: '首页',
     link: '/',

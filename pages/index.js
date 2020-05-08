@@ -3,8 +3,8 @@ import fetch from 'node-fetch'
 import React from 'react'
 import 'static/index.less'
 import List from 'components/index/List'
-// import Search from 'components/index/Search'
-import useArticleList from 'hooks/useArticleList';
+import Search from 'components/index/Search'
+import useArticleList from 'hooks/index/useArticleList';
 
 const Index = (props) => {
   const { list } = props;
@@ -14,7 +14,7 @@ const Index = (props) => {
       article: articleList.length
     }}>
       <div className="hing-div__index__wrapper">
-        {/*<Search handleSearchArticle={handleSearchArticle} />*/}
+        <Search handleSearchArticle={handleSearchArticle} />
         <List list={articleList} />
       </div>
     </Layout>

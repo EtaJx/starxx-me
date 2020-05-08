@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
+import { ListItem} from 'typings/list';
 
-const useArticleList = list => {
+const useArticleList = (list: ListItem[]) => {
   const [articleList, setArticleList] = useState(list);
   const [searchParams, setSearchParams] = useState({
     title: ''
@@ -13,8 +14,7 @@ const useArticleList = list => {
     })
   }, [searchParams.title]);
 
-  const handleSearchArticle = useCallback(title => {
-    console.log('title', title);
+  const handleSearchArticle = useCallback((title: string) => {
     setSearchParams({
       title
     });
@@ -24,6 +24,7 @@ const useArticleList = list => {
     articleList,
     handleSearchArticle
   }
+
 };
 
 export default useArticleList;
