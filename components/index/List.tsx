@@ -26,7 +26,7 @@ const List: React.FC<ListProps> = props => {
                 <h4>{title} <span style={{
                   fontWeight: 'normal',
                   color: '#999'
-                }}>{moment(date).utc().format('YYYY-MM-DD HH:mm:ss')}</span></h4>
+                }}>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</span></h4>
               </a>
             </li>
           )})

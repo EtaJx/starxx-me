@@ -15,7 +15,7 @@ const Content = (props) => {
         <h4>{title}</h4>
       </header>
       <div className='content'>
-        <span className="content-time">{moment(date).utc().format('YYYY-MM-DD hh:mm:ss')}</span>
+        <span className="content-time">{moment(date).format('YYYY-MM-DD hh:mm:ss')}</span>
         <div dangerouslySetInnerHTML={{
           __html: html
         }} />
