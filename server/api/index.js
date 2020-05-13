@@ -28,12 +28,17 @@ module.exports = (router) => {
     const GDList = fetchedGDList.reduce((prevItem, item) => {
       const [folderId, currentStructure] = item;
       const { folderName, files } = currentStructure;
-      files.forEach(item => {
-        item.date = item.modifiedTime;
-        item.title = item.name;
-      })
-      return [...prevItem, ...files];
-    }, [])
+      if (folderName !== 'meijian') {
+        const filterFiles = files.filter(item => item.name !== 'Untitled.md' && item.name !== 'index.md');
+        filterFiles.forEach(item => {
+          item.date = item.modifiedTime;
+          item.title = `【${folderName.toLocaleUpperCase()}】${item.name}`;
+        })
+        return [...prevItem, ...filterFiles];
+      } else {
+        return [...prevItem];
+      }
+    }, []);
     const sortedPostList = sort(GDList.filter(item => {
       const fileName = item.name.replace('.md', '');
       return !!fileName && !BLACK_LIST.includes(fileName)
