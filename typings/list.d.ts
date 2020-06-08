@@ -1,5 +1,12 @@
-export type ListItem = {
+export type Folder = {
   id: string,
-  date: string,
-  title: string
+  folderName: string
+  files: File[]
+  isOpen: boolean
+}
+
+export type File = {
+  id: string,
+  modifiedTime: Date,
+  name: string
 }

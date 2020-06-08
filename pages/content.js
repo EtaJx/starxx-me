@@ -1,8 +1,8 @@
-import Layout from '../components/Layout'
-import fetch from 'node-fetch'
-import React from 'react'
-import moment from 'moment'
-import 'static/content.less'
+import Layout from '../components/Layout';
+import { getFetch } from '../lib/fetch';
+import React from 'react';
+import moment from 'moment';
+import 'static/content.less';
 
 const Content = (props) => {
   const { article, articleCounts } = props
@@ -25,13 +25,14 @@ const Content = (props) => {
 }
 
 Content.getInitialProps = async ({ req, query }) => {
-  const { token } = query
-  const baseURL = `http://${req.headers['host']}`
-  const res = await fetch(`${baseURL}/api?token=${token}`)
-  const { article, articleCounts } = await res.json()
+  const fetch = getFetch(req);
+  const requestUrl = req ? `http://${req.headers['host']}`: 'http://localhost:8080';
+  const {token} = query;
+  const res = await fetch(`${requestUrl}/api?token=${token}`);
+  const {article, articleCounts} = await res.json();
   return {
     article, articleCounts
-  }
+  };
 }
 
-export default Content
+export default Content;

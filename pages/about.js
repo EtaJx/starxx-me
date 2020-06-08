@@ -1,18 +1,19 @@
 import Layout from 'components/Layout';
 import React from 'react';
 import Head from 'next/head';
-import fetch from 'node-fetch';
 import ResumeHeader from 'components/resume/Header';
 import ResumeContent from 'components/resume/Content';
 import ResumeSelfEvaluation from 'components/resume/SelfEvaluation';
+import { getFetch } from '../lib/fetch';
 
 /**
  * getInitialProps can not be used in children components. Only in pages.
  */
 class Index extends React.Component {
   static async getInitialProps({ req }) {
-    const baseUrl = `http://${req.headers['host']}`;
-    const res = await fetch(`${baseUrl}/resume`);
+    const fetch = getFetch(req);
+    const requestUrl = req ? `http://${req.headers['host']}`: 'http://localhost:8080';
+    const res = await fetch(`${requestUrl}/resume`);
     const { info: { data: { intro, resume, evaluation } } } = await res.json();
     return {
       intro,

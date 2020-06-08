@@ -1,16 +1,16 @@
 import { useState, useCallback, useEffect } from 'react';
-import { ListItem} from 'typings/list';
+import { Folder } from 'typings/list';
 
-const useArticleList = (list: ListItem[]) => {
-  const [articleList, setArticleList] = useState(list);
+const useFolders = (list: Folder[]) => {
+  const [foldersList, setArticleList] = useState(list);
   const [searchParams, setSearchParams] = useState({
     title: ''
   });
 
   useEffect(() => {
     setArticleList(() => {
-      const tempList = list.filter(file => file.title.indexOf(searchParams.title) > -1);
-      return searchParams.title ? [...tempList] : [...list];
+      const tempList = list.filter(file => file.folderName.indexOf(searchParams.title) > -1);
+      return searchParams.title ? [...tempList] : [...list.map(item => ({ ...item, isOpen: true }))];
     })
   }, [searchParams.title]);
 
@@ -21,10 +21,10 @@ const useArticleList = (list: ListItem[]) => {
   }, []);
 
   return {
-    articleList,
+    foldersList,
     handleSearchArticle
   }
 
 };
 
-export default useArticleList;
+export default useFolders;

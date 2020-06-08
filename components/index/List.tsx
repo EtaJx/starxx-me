@@ -1,33 +1,48 @@
-import React from 'react'
-import moment from 'moment'
-import { ListItem } from 'typings/list';
-import './style/list.less'
+import React from 'react';
+import moment from 'moment';
+import { Folder, File } from 'typings/list';
+import './style/list.less';
 
-const listStyle: React.CSSProperties = {
-  listStyle: 'none',
-  padding: 0,
-  margin: 0
-}
+type FileProps = {
+  files: File[];
+};
+const FileItem: React.FC<FileProps> = props => {
+  const { files } = props;
+  return (
+    <div className="hing-div__file__item">
+      {
+        files.map((file: File) => {
+          const { name, id, modifiedTime  } = file;
+          return (
+            <a className="hing-a__list__link" href={`/content?token=${id}`} key={id}>
+              <span className="hing-span__title">{name}</span>
+              <span className="hing-span__date">{moment(modifiedTime).format('YYYY-MM-DD HH:mm:ss')}</span>
+            </a>
+          )
+        })
+      }
+    </div>
+  )
+};
+
 
 type ListProps = {
-  list: ListItem[]
-}
-
+  list: Folder[]
+};
 const List: React.FC<ListProps> = props => {
   const { list } = props
   return (
-    <ul style={listStyle}>
+    <ul className="hing-ul__list__wrapper">
       {
         list.map(item  => {
-          const { id, date, title } = item;
+          const { id, folderName, files, isOpen } = item;
           return (
-            <li key={id}>
-              <a href={`/content?token=${id}`} className="hing-a__list__link">
-                <h4>{title} <span style={{
-                  fontWeight: 'normal',
-                  color: '#999'
-                }}>{moment(date).format('YYYY-MM-DD HH:mm:ss')}</span></h4>
-              </a>
+            <li key={id} className="hing-li__list__item">
+              <div className="hing-div__list__item__title">
+                <i className="hing-i__folder__icon" />
+                <h4>{folderName}</h4>
+              </div>
+              { isOpen ? <FileItem files={files} /> : null }
             </li>
           )})
       }

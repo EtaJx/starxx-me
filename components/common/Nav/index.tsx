@@ -16,7 +16,9 @@ const Nav: React.FC<NavProps> = props => {
   return (
     <section className="hing-nav">
       <div className="hing-div__nav__avatar" id="avatarWrapper">
-        <img src="/static/imgs/avatar.png" id="avatar" />
+        <a href="/">
+          <img src="/static/imgs/avatar.png" id="avatar" />
+        </a>
       </div>
       <ul className="hing-ul__nav__group">
         {

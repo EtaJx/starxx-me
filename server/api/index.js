@@ -25,26 +25,23 @@ module.exports = (router) => {
 
   const articleList = (ctx) => {
     const fetchedGDList = require('../../data.json');
-    const GDList = fetchedGDList.reduce((prevItem, item) => {
-      const [folderId, currentStructure] = item;
-      const { folderName, files } = currentStructure;
-      if (folderName !== 'meijian') {
-        const filterFiles = files.filter(item => item.name !== 'Untitled.md' && item.name !== 'index.md');
-        filterFiles.forEach(item => {
-          item.date = item.modifiedTime;
-          item.title = `【${folderName.toLocaleUpperCase()}】${item.name}`;
-        })
-        return [...prevItem, ...filterFiles];
-      } else {
-        return [...prevItem];
-      }
+    const foldersList = fetchedGDList.reduce((prevItem, currentItem) => {
+      const [folderId, structrue = {}] = currentItem;
+      const { folderName = '', files = [] } = structrue
+      const entityFiles = files.filter(item => item.name !== 'Untitled.md' && item.name !== 'index.md');
+      const formatFolderStructure = {
+        id: folderId,
+        folderName,
+        files: entityFiles
+      };
+      prevItem.push(formatFolderStructure);
+      return prevItem;
     }, []);
-    const sortedPostList = sort(GDList.filter(item => {
-      const fileName = item.name.replace('.md', '');
-      return !!fileName && !BLACK_LIST.includes(fileName)
-    })).reverse();
     ctx.body = {
-      list: [...sortedPostList]
+      list: [...foldersList.filter(item => {
+        const { folderName } = item;
+        return !!folderName && !BLACK_LIST.includes(folderName)
+      })]
     };
   };
 
