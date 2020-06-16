@@ -8,10 +8,10 @@ data:
        key: email
     -  val: 毕业于重庆邮电大学，软件工程学院
        key: graduate
-    -  val: <a href="https://github.com/Neras">https://github.com/Neras</a>
+    -  val: <a href="https://github.com/EtaJx">https://github.com/EtaJx</a>
        key: github
-   #  -  val: <a href="https://neras.github.io">https://neras.github.io</a>
-   #     key: blog
+    -  val: <a href="https://starx.me">https://starx.me</a>
+       key: blog
   resume:
       skill:
          title: 掌握技能
