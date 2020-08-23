@@ -1,5 +1,95 @@
 .index-wrapper{
   width: 100%;
-  height: 100%;
-  background-image: linear-gradient(30deg, #8E78FF, #B9DEDB);
+  padding-top: 50px;
+}
+.bubble {
+  position: relative;
+  top: 35%;
+}
+.bubble::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 35%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 40vh;
+  height: 40vh;
+  min-height: 200px;
+  min-width: 200px;
+  background: linear-gradient( 270deg, #43e97b, #38f9d7, #e0c3fc, #8ec5fc, #4facfe, #00f2fe, #a8edea, #fed6e3);
+  background-size: 1600% 1600%;
+  box-shadow: inset 0px -20px 100px 0px rgba(255, 255, 255, 0.48);
+  animation: changeShape 10s linear infinite alternate, movement 40s linear infinite alternate, shade 60s linear infinite alternate;
+}
+.bubble::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 20vh;
+  height: 20vh;
+  min-height: 200px;
+  min-width: 200px;
+  background: linear-gradient( 270deg, #00f2fe, #8ec5fc, #38f9d7, #4facfe, #a8edea, #43e97b, #e0c3fc, #fed6e3);
+  background-size: 1600% 1600%;
+  box-shadow: inset 0px -20px 100px 0px rgba(255, 255, 255, 0.48);
+  animation: changeShape2 10s linear infinite alternate-reverse, movement 40s linear infinite alternate-reverse, shade 60s linear infinite alternate-reverse;
+}
+@keyframes changeShape {
+  0%, 100% {
+    border-radius: 42% 58% 60% 40%;
+  }
+  20% {
+    border-radius: 37% 63% 51% 49%;
+  }
+  40% {
+    border-radius: 36% 64% 64% 36%;
+  }
+  60% {
+    border-radius: 37% 63% 51% 49%;
+  }
+  80% {
+    border-radius: 40% 60% 42% 58%;
+  }
+}
+@keyframes changeShape2 {
+  0% {
+    border-radius: 42% 38% 60% 30%;
+  }
+  20% {
+    border-radius: 59% 41% 36% 64%;
+  }
+  40% {
+    border-radius: 48% 72% 52% 48%;
+  }
+  60% {
+    border-radius: 42% 58% 31% 49%;
+  }
+  80% {
+    border-radius: 32% 68% 33% 67%;
+  }
+  100% {
+    border-radius: 34% 66% 32% 48%;
+  }
+}
+@keyframes movement {
+  from {
+    transform: rotate(-1turn) translateY(-50px);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes shade {
+  0%, 100% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }

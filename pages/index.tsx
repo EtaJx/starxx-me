@@ -1,17 +1,25 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
+import Layout from '@/components/Layout';
 import Head from 'next/head';
 import './style.less';
 
 export default memo(function Home() {
+  const [wrapperHeight, setWrapperHeight] = useState(0);
+  useEffect(() => {
+    setWrapperHeight(window.innerHeight);
+  }, []);
   return (
     <>
       <Head>
         <title>Personal Site</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="index-wrapper">
-        i am index
-      </div>
+      <Layout>
+        <div className="index-wrapper" style={{ height: `${wrapperHeight - 50}px` }}>
+          {/*<div className="bubble" />*/}
+          Yes, I am Index.
+        </div>
+      </Layout>
     </>
   );
 });
