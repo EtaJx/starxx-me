@@ -25,11 +25,12 @@ data:
          key: skill
       experience:
         -  company: 杭州美间科技有限公司
-           time: 2019年7月-至今
+           time: 2019年7月-2020年11月
            department: ''
            projects:
              - 使用React开发维护主站：<a href="https://www.meijian.io" target="_black">美间官网</a>，包括但不限于日常需求以及公共组件的开发
-             - 使用React + TypeScript开发：公共通知组件（主站登录后右上角通知功能）；单品公共编辑弹窗组件重构
+             - 使用React单独完成<a href="https://www.meijian.io/board/5fe5428be4b022446d24a3f8">详情页面</a>重构
+             - 使用React + TypeScript开发：公共通知组件（主站登录后右上角通知功能）；公共编辑弹窗组件重构等
              - 使用Nodejs基于prerender.io开源的prerender库二次开发自建公司内部使用的prerender服务，优化搜索引擎的爬取，提升SEO
            key: meijian
            skills:
