@@ -6,20 +6,17 @@ import './style.less';
 type CompputedLinkProps = {
   children: React.ReactElement;
   href: string;
-  key: string;
-  style: React.CSSProperties
+  style?: React.CSSProperties
 };
 
-const ComputedLink: React.FC<CompputedLinkProps> = ({ children, href, key, style }) => {
-  console.log('href', href);
+const ComputedLink: React.FC<CompputedLinkProps> = ({ children, href, style }) => {
   const router = useRouter();
-  console.log('pathname', router.pathname);
   const handleLinkClick = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     await router.push(href);
   };
   return (
-    <a href={href} key={key} style={style} onClick={handleLinkClick} className="link">
+    <a href={href} style={style} onClick={handleLinkClick} className="link">
       {React.cloneElement(children, {
         isActive: href === router.pathname
       })}

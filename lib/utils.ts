@@ -79,7 +79,7 @@ const getAccessToken = (oAuth2Client: OAuth2Client, callback: any) => {
  * @param credentials
  * @param callback
  */
-const authorize = (credentials: any, callback: any) => {
+const authorize = (credentials: any, callback?: any) => {
   // eslint-disable-next-line camelcase
   const { client_secret, client_id, redirect_uris } = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
@@ -89,7 +89,9 @@ const authorize = (credentials: any, callback: any) => {
     }
     const tokenString = token.toString();
     oAuth2Client.setCredentials(JSON.parse(tokenString));
-    callback(oAuth2Client);
+    if (callback) {
+      callback(oAuth2Client);
+    }
   });
 };
 
@@ -98,24 +100,79 @@ const getFilesList = (auth: GoogleAuth | OAuth2Client | string, pageToken?: stri
     version: 'v3',
     auth
   });
+  // google drive api 的 pageSize 参数最大为1000
+  // 目前直接全部请求
+  // 是否有超时可能？
+  // 超过1000的处理？
+  // TODO
   drive.files.list({
-    pageSize: 15,
+    pageSize: 1000,
     q: "mimeType='text/markdown'",
     fields: 'nextPageToken, files(id, name, parents, modifiedTime)',
     corpora: 'user',
     pageToken
   }, async (err: any, res: any) => {
     const { data: { files, nextPageToken } } = res;
+    console.log('data', res);
     if (err) {
       throw Error(`download files list failed ${err} ${res}`);
     }
     console.log('-------loading next page--------');
+    console.log('nextPageToken', nextPageToken);
     await constructFolderStructure(drive, files);
     if (nextPageToken) {
       getFilesList(auth, nextPageToken);
     } else {
       createFolderDataStructure();
     }
+  });
+};
+
+export const fetchFileContent = (id: string) => {
+  return new Promise((resolve, reject) => {
+    const credentials = path.resolve(ROOT_PATH, './credentials.json');
+    fs.readFile(credentials, (err, content) => {
+      if (err) {
+        console.log('err', err);
+      }
+      authorize(JSON.parse(content.toString()), (auth: any) => {
+        const drive = google.drive({
+          version: 'v3',
+          auth
+        });
+        // const contentChunk: string[] = [];
+        // @ts-ignore
+        drive.files.get({
+          fileId: id
+        }).then((res: any) => {
+          if (res) {
+            const { data: { name, modifiedTime } } = res;
+            const contentChunk: string[] = [];
+            drive.files.get({
+              fileId: id,
+              fields: 'title, modifiedTime',
+              alt: 'media'
+            }, {
+              responseType: 'stream'
+            }, (err, result) => {
+              if (err) {
+                console.log('error', err);
+              } else if (result) {
+                result.data.on('data', (chunk: any) => {
+                  contentChunk.push(chunk);
+                }).on('end', () => {
+                  resolve({
+                    content: contentChunk.toString(),
+                    name: name,
+                    modifiedTime
+                  });
+                });
+              }
+            });
+          }
+        });
+      });
+    });
   });
 };
 
@@ -134,3 +191,5 @@ export const initGooleDriverAuthor = () => {
     authorize(JSON.parse(contentString), getFilesList);
   });
 };
+
+initGooleDriverAuthor();

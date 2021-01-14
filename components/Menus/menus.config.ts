@@ -7,4 +7,10 @@ export const MENUS: Menu[] = [{
   key: 'about',
   label: 'ABOUT',
   link: '/resume'
+}, {
+  key: 'github',
+  label: 'GITHUB',
+  link: 'https://github.com/EtaJx'
 }];
+
+export const MENU_HEISHT = 38;

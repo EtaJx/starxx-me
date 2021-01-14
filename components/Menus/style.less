@@ -1,18 +1,31 @@
 .menu-wrapper{
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
+  box-sizing: border-box;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
+  padding: 0 50px
+}
+.menu-link__wrapper{
+  display: flex;
+  align-items: center;
 }
 .menu-link{
   display: block;
   text-align: center;
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 600;
   padding: 10px;
-  color: #666;
+  color: #999;
+  transition: all ease-in-out .3s;
+  &:hover{
+    color: #666;
+  }
 }
 .menu-link-active{
-  color: #58B2DC;
+  color: #666;
+}
+.italic{
+  font-style: normal;
+  color: #999;
 }

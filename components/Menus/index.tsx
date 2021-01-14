@@ -10,27 +10,32 @@ type MenuLinkProps = {
 }
 
 const MenuLink: React.FC<MenuLinkProps> = memo(props => {
-  const { label, isActive } = props;
+  const { label, isActive, children } = props;
   return (
-    <span className={`menu-link ${isActive ? 'menu-link-active' : ''}`}>{ label }</span>
-  )
+    <span className={`menu-link ${isActive ? 'menu-link-active' : ''}`}>{label} {children}</span>
+  );
 });
 
 const Menus: React.FC = () => {
   return (
     <div className="menu-wrapper">
       {
-        MENUS.map(item => {
+        MENUS.map((item, index) => {
           const { link, key, label } = item;
           return (
-            <ComputedLink href={link} key={key} style={{ width: `${(1 / MENUS.length) * 100}%`}}>
-              <MenuLink label={label} />
-            </ComputedLink>
+            <div className="menu-link__wrapper" key={key}>
+              <ComputedLink href={link}>
+                <MenuLink label={label} />
+              </ComputedLink>
+              {
+                index === MENUS.length - 1 ? '' : <i className="italic">/</i>
+              }
+            </div>
           );
         })
       }
     </div>
-  )
-}
+  );
+};
 
 export default memo(Menus);

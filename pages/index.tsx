@@ -1,13 +1,9 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import Layout from '@/components/Layout';
 import Head from 'next/head';
 import './style.less';
 
 const Home: React.FC = () => {
-  const [wrapperHeight, setWrapperHeight] = useState(0);
-  useEffect(() => {
-    setWrapperHeight(window.innerHeight);
-  }, []);
   return (
     <>
       <Head>
@@ -15,9 +11,8 @@ const Home: React.FC = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className="index-wrapper" style={{ height: `${wrapperHeight - 50}px` }}>
+        <div className="index-wrapper">
           {/* <div className="bubble" /> */}
-          Yes, I am Index.
         </div>
       </Layout>
     </>
