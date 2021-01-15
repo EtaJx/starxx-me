@@ -2,14 +2,13 @@
 import * as fs from 'fs';
 import { initGooleDriverAuthor } from '@/lib/utils';
 
-export default async (req: any, res: any) => {
-  const hasAList = await initGooleDriverAuthor();
-  console.log('hasAList', hasAList);
-  fs.readFile('./data.json', (err, context) => {
+export default (req: any, res: any) => {
+  fs.readFile('./data.json', async (err, context) => {
     if (err) {
-      res.statusCode = 404;
+      const content = await initGooleDriverAuthor();
+      res.statusCode = 200;
       res.json({
-        result: 'there is no list'
+        result: JSON.parse(content.toString())
       });
     }
     res.statusCode = 200;

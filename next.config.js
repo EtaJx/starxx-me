@@ -8,5 +8,11 @@ module.exports = withLess({
   webpack: config => {
     config.resolve.alias['@'] = path.resolve(__dirname);
     return config;
+  },
+  rewrites: () => {
+    return [{
+      source: '/',
+      destination: '/index'
+    }];
   }
-})
+});

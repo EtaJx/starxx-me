@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as readline from 'readline';
 import * as path from 'path';
 import { google } from 'googleapis';
-import { GoogleAuth, OAuth2Client } from 'google-auth-library';
+import { OAuth2Client } from 'google-auth-library';
 import { GetTokenResponse } from 'google-auth-library/build/src/auth/oauth2client';
 
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
@@ -81,9 +81,8 @@ const getAccessToken = (oAuth2Client: OAuth2Client) => {
 /**
  * 开始认证
  * @param credentials
- * @param callback
  */
-const authorize = (credentials: any) => {
+const authorize = (credentials: any): Promise<OAuth2Client> => {
   return new Promise((resolve: any) => {
     // eslint-disable-next-line camelcase
     const { client_secret, client_id, redirect_uris } = credentials.installed;
@@ -99,12 +98,12 @@ const authorize = (credentials: any) => {
   });
 };
 
-const getFilesList = (auth: GoogleAuth | OAuth2Client | string, pageToken?: string) => {
+const getFilesList = (auth: OAuth2Client, pageToken?: string) => {
   const drive = google.drive({
     version: 'v3',
     auth
   });
-  return new Promise((resolve: any, reject: any) => {
+  return new Promise((resolve: any) => {
     // google drive api 的 pageSize 参数最大为1000
     // 目前直接全部请求
     // 是否有超时可能？
@@ -140,16 +139,18 @@ export const fetchFileContent = (id: string) => {
       if (err) {
         console.log('err', err);
       }
-      authorize(JSON.parse(content.toString())).then((auth: any) => {
+      authorize(JSON.parse(content.toString())).then((auth: OAuth2Client) => {
         const drive = google.drive({
           version: 'v3',
           auth
         });
         // const contentChunk: string[] = [];
         drive.files.get({
-          fileId: id
+          fileId: id,
+          fields: 'id, name, mimeType, modifiedTime'
         }).then((res: any) => {
           if (res) {
+            console.log('res', res);
             const { data: { name, modifiedTime } } = res;
             const contentChunk: string[] = [];
             drive.files.get({
@@ -184,19 +185,26 @@ export const fetchFileContent = (id: string) => {
 /**
  * 初始化GoogleDriveAPI
  */
-export const initGooleDriverAuthor = () => {
+export const initGooleDriverAuthor = (): Promise<Buffer | []> => {
   return new Promise((resolve: any) => {
     const credentials = path.resolve(ROOT_PATH, './credentials.json');
     // 读取本地credentials文件
-    fs.readFile(credentials, (err, content) => {
+    fs.readFile(credentials, (err: Error | null, content: Buffer) => {
       if (err) {
         console.log('error', err);
         throw Error('make sure you have credentials.json');
       }
       const contentString = content.toString();
-      authorize(JSON.parse(contentString)).then(async (auth: any) => {
+      authorize(JSON.parse(contentString)).then(async (auth: OAuth2Client) => {
         const result = await getFilesList(auth);
-        resolve(result);
+        if (result) {
+          fs.readFile('./data.json', (err: Error | null, content: Buffer) => {
+            if (err) {
+              resolve([]);
+            }
+            resolve(content);
+          });
+        }
       });
     });
   });
