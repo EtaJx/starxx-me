@@ -16,7 +16,7 @@ export type files = file[]
 export type folderName = string
 
 export interface folderIncludeFiles {
-  files: files,
+  files: file[],
   folderName: folderName
 }
 

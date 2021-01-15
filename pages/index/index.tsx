@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import Layout from '@/components/Layout';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
-import { folderStructs } from '@/pages/types/list';
+import { folderStructs } from '@/typings/list';
 import List from './List';
 import './style.less';
 
