@@ -39,16 +39,19 @@ const constructFolderStructure = async (drive: any, files = []) => {
 };
 
 const createFolderDataStructure = () => {
-  const filesFromMap = Array.from(FOLDERS_MAP);
-  fs.writeFile(DATA_PATH, JSON.stringify(filesFromMap), err => {
-    if (err) {
-      throw err;
-    }
-    console.log('files read complete!');
+  return new Promise((resolve: any, reject: any) => {
+    const filesFromMap = Array.from(FOLDERS_MAP);
+    fs.writeFile(DATA_PATH, JSON.stringify(filesFromMap), err => {
+      if (err) {
+        throw err;
+      }
+      console.log('files read complete!');
+      resolve(true);
+    });
   });
 };
 
-const getAccessToken = (oAuth2Client: OAuth2Client, callback: any) => {
+const getAccessToken = (oAuth2Client: OAuth2Client) => {
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES
@@ -69,7 +72,8 @@ const getAccessToken = (oAuth2Client: OAuth2Client, callback: any) => {
         }
         console.log('Token stored to', TOKEN_PATH);
       });
-      callback(oAuth2Client);
+      // 获取AccessToken之后手动执行getFileList
+      getFilesList(oAuth2Client);
     });
   });
 };
@@ -79,19 +83,19 @@ const getAccessToken = (oAuth2Client: OAuth2Client, callback: any) => {
  * @param credentials
  * @param callback
  */
-const authorize = (credentials: any, callback?: any) => {
-  // eslint-disable-next-line camelcase
-  const { client_secret, client_id, redirect_uris } = credentials.installed;
-  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    if (err) {
-      return getAccessToken(oAuth2Client, callback);
-    }
-    const tokenString = token.toString();
-    oAuth2Client.setCredentials(JSON.parse(tokenString));
-    if (callback) {
-      callback(oAuth2Client);
-    }
+const authorize = (credentials: any) => {
+  return new Promise((resolve: any) => {
+    // eslint-disable-next-line camelcase
+    const { client_secret, client_id, redirect_uris } = credentials.installed;
+    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+    fs.readFile(TOKEN_PATH, (err, token) => {
+      if (err) {
+        return getAccessToken(oAuth2Client);
+      }
+      const tokenString = token.toString();
+      oAuth2Client.setCredentials(JSON.parse(tokenString));
+      resolve(oAuth2Client);
+    });
   });
 };
 
@@ -100,31 +104,32 @@ const getFilesList = (auth: GoogleAuth | OAuth2Client | string, pageToken?: stri
     version: 'v3',
     auth
   });
-  // google drive api 的 pageSize 参数最大为1000
-  // 目前直接全部请求
-  // 是否有超时可能？
-  // 超过1000的处理？
-  // TODO
-  drive.files.list({
-    pageSize: 1000,
-    q: "mimeType='text/markdown'",
-    fields: 'nextPageToken, files(id, name, parents, modifiedTime)',
-    corpora: 'user',
-    pageToken
-  }, async (err: any, res: any) => {
-    const { data: { files, nextPageToken } } = res;
-    console.log('data', res);
-    if (err) {
-      throw Error(`download files list failed ${err} ${res}`);
-    }
-    console.log('-------loading next page--------');
-    console.log('nextPageToken', nextPageToken);
-    await constructFolderStructure(drive, files);
-    if (nextPageToken) {
-      getFilesList(auth, nextPageToken);
-    } else {
-      createFolderDataStructure();
-    }
+  return new Promise((resolve: any, reject: any) => {
+    // google drive api 的 pageSize 参数最大为1000
+    // 目前直接全部请求
+    // 是否有超时可能？
+    // 超过1000的处理？
+    // TODO
+    drive.files.list({
+      pageSize: 1000,
+      q: "mimeType='text/markdown'",
+      fields: 'nextPageToken, files(id, name, parents, modifiedTime)',
+      corpora: 'user',
+      pageToken
+    }, async (err: any, res: any) => {
+      const { data: { files, nextPageToken } } = res;
+      if (err) {
+        throw Error(`download files list failed ${err} ${res}`);
+      }
+      console.log('-------loading next page--------');
+      await constructFolderStructure(drive, files);
+      if (nextPageToken) {
+        await getFilesList(auth, nextPageToken);
+      } else {
+        const createFolderDataResult = await createFolderDataStructure();
+        resolve(createFolderDataResult);
+      }
+    });
   });
 };
 
@@ -135,13 +140,12 @@ export const fetchFileContent = (id: string) => {
       if (err) {
         console.log('err', err);
       }
-      authorize(JSON.parse(content.toString()), (auth: any) => {
+      authorize(JSON.parse(content.toString())).then((auth: any) => {
         const drive = google.drive({
           version: 'v3',
           auth
         });
         // const contentChunk: string[] = [];
-        // @ts-ignore
         drive.files.get({
           fileId: id
         }).then((res: any) => {
@@ -157,8 +161,9 @@ export const fetchFileContent = (id: string) => {
             }, (err, result) => {
               if (err) {
                 console.log('error', err);
+                throw err;
               } else if (result) {
-                result.data.on('data', (chunk: any) => {
+                result.data.on('data', (chunk: string) => {
                   contentChunk.push(chunk);
                 }).on('end', () => {
                   resolve({
@@ -180,16 +185,19 @@ export const fetchFileContent = (id: string) => {
  * 初始化GoogleDriveAPI
  */
 export const initGooleDriverAuthor = () => {
-  const credentials = path.resolve(ROOT_PATH, './credentials.json');
-  // 读取本地credentials文件
-  fs.readFile(credentials, (err, content) => {
-    if (err) {
-      console.log('error', err);
-      throw Error('make sure you have credentials.json');
-    }
-    const contentString = content.toString();
-    authorize(JSON.parse(contentString), getFilesList);
+  return new Promise((resolve: any) => {
+    const credentials = path.resolve(ROOT_PATH, './credentials.json');
+    // 读取本地credentials文件
+    fs.readFile(credentials, (err, content) => {
+      if (err) {
+        console.log('error', err);
+        throw Error('make sure you have credentials.json');
+      }
+      const contentString = content.toString();
+      authorize(JSON.parse(contentString)).then(async (auth: any) => {
+        const result = await getFilesList(auth);
+        resolve(result);
+      });
+    });
   });
 };
-
-initGooleDriverAuthor();

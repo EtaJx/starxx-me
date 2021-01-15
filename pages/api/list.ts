@@ -2,8 +2,9 @@
 import * as fs from 'fs';
 import { initGooleDriverAuthor } from '@/lib/utils';
 
-export default (req: any, res: any) => {
-  initGooleDriverAuthor();
+export default async (req: any, res: any) => {
+  const hasAList = await initGooleDriverAuthor();
+  console.log('hasAList', hasAList);
   fs.readFile('./data.json', (err, context) => {
     if (err) {
       res.statusCode = 404;
