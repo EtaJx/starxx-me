@@ -2,4 +2,5 @@ new version personal pages
 
 - [x] eslint
 - [x] change GoogleDriveAPI method to promise
-- [ ] handle markdown(highlight code)
+- [x] handle markdown(highlight code)
+- [ ] dark / light

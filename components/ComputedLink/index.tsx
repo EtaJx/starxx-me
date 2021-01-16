@@ -18,7 +18,7 @@ const ComputedLink: React.FC<CompputedLinkProps> = ({ children, href, style }) =
   return (
     <a href={href} style={style} onClick={handleLinkClick} className="link">
       {React.cloneElement(children, {
-        isActive: href === router.pathname
+        isActive: href === router.pathname || href === '/' || href === '/index'
       })}
     </a>
   );

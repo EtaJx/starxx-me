@@ -1,6 +1,9 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { GetServerSideProps } from 'next';
+import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Layout from '@/components/Layout';
 import './style.less';
 
@@ -9,13 +12,34 @@ type ArticleProps = {
   name: string,
   modifiedTime: string
 }
+
+// renders参数
+type RendersParams = {
+  language: string,
+  value: string
+}
+// renders
+type Renders = {
+  code: (params: RendersParams) => React.ReactElement
+}
 const Article: React.FC<ArticleProps> = (props) => {
-  console.log('props', props);
-  const { content } = props;
+  const { name, content, modifiedTime } = props;
+  const articleTime = moment(modifiedTime).utc().utcOffset(-8).locale('zh-CN').format('lll');
+  const renders: Renders = useMemo(() => {
+    return {
+      code: ({ language, value }) => {
+        return (
+          <SyntaxHighlighter style={atomOneLight} language={language} children={value} />
+        );
+      }
+    };
+  }, []);
   return (
     <Layout>
       <div className="article-wrapper">
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <h4 className="article-title">{name}</h4>
+        <span className="article-time">{articleTime}</span>
+        <ReactMarkdown renderers={renders} children={content} />
       </div>
     </Layout>
   );
