@@ -4,11 +4,10 @@ export const MENUS: Menu[] = [{
   label: 'HOME',
   link: '/'
 }, {
-// }, {
-//   key: 'about',
-//   label: 'ABOUT',
-//   link: '/resume'
-// }, {
+  key: 'about',
+  label: 'ABOUT',
+  link: '/resume'
+}, {
   key: 'github',
   label: 'GITHUB',
   link: 'https://github.com/EtaJx'
