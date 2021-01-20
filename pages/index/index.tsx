@@ -14,7 +14,7 @@ const Home: React.FC<ListProps> = (props) => {
   return (
     <>
       <Head>
-        <title>Personal Site</title>
+        <title>Hing</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>

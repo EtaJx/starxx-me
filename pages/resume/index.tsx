@@ -9,13 +9,12 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
 const Resume: React.FC<any> = props => {
-  console.log('props', props);
   const { data = {} } = props;
   const { intro, resume, evaluation } = data;
   return (
     <>
       <Head>
-        <title>resume</title>
+        <title>经历</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>

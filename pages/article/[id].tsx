@@ -6,6 +6,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Layout from '@/components/Layout';
 import './style.less';
+import Head from 'next/head';
 
 type ArticleProps = {
   content: string,
@@ -24,6 +25,7 @@ type Renders = {
 }
 const Article: React.FC<ArticleProps> = (props) => {
   const { name, content, modifiedTime } = props;
+  const adjustName = name.replace('.md', '');
   const articleTime = moment(modifiedTime).utc().utcOffset(-8).locale('zh-CN').format('lll');
   const renders: Renders = useMemo(() => {
     return {
@@ -35,13 +37,19 @@ const Article: React.FC<ArticleProps> = (props) => {
     };
   }, []);
   return (
-    <Layout>
-      <div className="article-wrapper">
-        <h4 className="article-title">{name}</h4>
-        <span className="article-time">{articleTime}</span>
-        <ReactMarkdown renderers={renders} children={content} />
-      </div>
-    </Layout>
+    <>
+      <Head>
+        <title>{adjustName}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Layout>
+        <div className="article-wrapper">
+          <h4 className="article-title">{adjustName}</h4>
+          <span className="article-time">{articleTime}</span>
+          <ReactMarkdown renderers={renders} children={content} />
+        </div>
+      </Layout>
+    </>
   );
 };
 

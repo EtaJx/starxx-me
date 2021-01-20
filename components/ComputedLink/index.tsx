@@ -15,7 +15,6 @@ const ComputedLink: React.FC<CompputedLinkProps> = ({ children, href, style }) =
     e.preventDefault();
     await router.push(href);
   };
-  console.log('href', href, router.pathname);
   return (
     <a href={href} style={style} onClick={handleLinkClick} className="link">
       {React.cloneElement(children, {
