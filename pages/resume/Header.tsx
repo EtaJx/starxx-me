@@ -11,7 +11,7 @@ type HeaderProps = {
 }
 
 const Header:React.FC<HeaderProps> = props => {
-  const { intro } = props;
+  const { intro = [] } = props;
   return (
     <header className="hing-header__wrapper">
       <img className="hing-img__avatar" src="/avatar.jpg" alt="我自己" />

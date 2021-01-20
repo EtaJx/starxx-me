@@ -3,8 +3,9 @@ import Skill from './Skill';
 import { ContentType } from '@/typings/resume';
 import './styles/content.less';
 
-const Content: React.FC<ContentType.Props> = props => {
-  const { skill, experience = [] } = props.resume;
+const Content: React.FC<ContentType.Props> = (props) => {
+  const { resume = {} } = props;
+  const { experience = [], skill = {} } = resume as ContentType.ExperienceResume;
   return (
     <div className="hing-div__intro__wrapper">
       <div className="hing-div__experience">
