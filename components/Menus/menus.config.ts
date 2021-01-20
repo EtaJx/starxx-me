@@ -2,7 +2,7 @@ import type { Menu } from './type/menus';
 export const MENUS: Menu[] = [{
   key: 'index',
   label: 'HOME',
-  link: '/'
+  link: '/index'
 }, {
   key: 'about',
   label: 'ABOUT',

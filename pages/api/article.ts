@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { fetchFileContent } from '@/lib/utils';
 
 export default async (req: any, res: any) => {

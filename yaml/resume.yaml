@@ -2,8 +2,8 @@ data:
   intro:
     -  val: 蒋正兴
        key: name
-    -  val: '17682340306'
-       key: phone
+#    -  val: '17682340306'
+#       key: phone
     -  val: medianeras57@gmail.com
        key: email
     -  val: 毕业于重庆邮电大学，软件工程学院
@@ -19,8 +19,8 @@ data:
           -  熟悉html，理解Web语义化，理解盒子模型，手写符合W3C标准的css代码
           -  熟悉JavaScript，掌握ES6/7，并运用到实际项目中
           -  熟悉Git常用命令
-          -  熟悉React
-          -  了解Nodejs，Vue，TypeScript
+          -  熟悉React, TypeScript
+          -  了解Nodejs，Vue, Golang
           -  有简单的Nginx部署Nodejs项目经验
          key: skill
       experience:
