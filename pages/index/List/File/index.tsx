@@ -10,7 +10,7 @@ type FileProps = {
 const File: React.FC<FileProps> = (props) => {
   const { file = {} } = props;
   const { name, modifiedTime, id } = file;
-  const localTime = moment(modifiedTime).utc().utcOffset(-8).locale('zh-CN').format('llll');
+  const localTime = moment(modifiedTime).utc().utcOffset(+8).locale('zh-CN').format('llll');
   return (
     <Link href={`/article/${id}`}>
       <div className="file-wrapper">
