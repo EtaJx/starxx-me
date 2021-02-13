@@ -26,7 +26,7 @@ type Renders = {
 const Article: React.FC<ArticleProps> = (props) => {
   const { name, content, modifiedTime } = props;
   const adjustName = name.replace('.md', '');
-  const articleTime = moment(modifiedTime).utc().utcOffset(-8).locale('zh-CN').format('lll');
+  const articleTime = moment(modifiedTime).utc().utcOffset(+8).locale('zh-CN').format('lll');
   const renders: Renders = useMemo(() => {
     return {
       code: ({ language, value }) => {
