@@ -5,8 +5,20 @@
   justify-content: space-between;
   cursor: pointer;
   transition: all ease-in-out .3s;
+  flex: 1;
   &:hover{
     text-decoration: underline;
     color: #000;
+  }
+  .file-name{
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .file-createtime{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
