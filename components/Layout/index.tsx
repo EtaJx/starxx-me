@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import Menus from '@/components/Menus';
-import { MENU_HEISHT } from '@/components/Menus/menus.config';
+
+import useGlobalTheme from '@/hooks/useGlobalTheme';
 
 import './style.less';
 
@@ -10,16 +11,21 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = props => {
   const { children } = props;
-  const [wrapperHeight, setWrapperHeight] = useState(0);
-  useEffect(() => {
-    setWrapperHeight(window.innerHeight);
-  }, []);
+  const currentTheme = useGlobalTheme();
+  const { currentThemeType = 'light', toggleTheme } = currentTheme;
   return (
-    <div className="content">
+    <div
+      className="content"
+      style={currentTheme[currentThemeType] as React.CSSProperties}
+    >
       <Menus />
-      <div className="content-wrapper" style={{ height: `${wrapperHeight - MENU_HEISHT}px` }}>
-      { children }
+      <div className="content-wrapper">
+        { children }
       </div>
+      <span
+        onClick={toggleTheme}
+        className={`theme-toggle ${currentThemeType}`}
+      />
     </div>
   );
 };
