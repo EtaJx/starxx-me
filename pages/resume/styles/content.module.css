@@ -7,15 +7,15 @@
 .hing-div__content {
   width: 100%;
   border-bottom: 1px solid #e3e3e3;
-  ul{
-    padding-left: 18px;
-  }
-  li{
-    font-size: 14px;
-    a{
-      color: #58B2DC;
-    }
-  }
+}
+.hing-div__content ul{
+  padding-left: 18px;
+}
+.hing-div__content ul li {
+  font-size: 14px;
+}
+.hing-div__content ul li a{
+  color: #58B2DC;
 }
 
 .hing-div__experience {

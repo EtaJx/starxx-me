@@ -3,7 +3,7 @@ import Menus from '@/components/Menus';
 
 import useGlobalTheme from '@/hooks/useGlobalTheme';
 
-import './style.less';
+import styles from './style.module.css';
 
 type LayoutProps = {
   children: React.ReactElement;
@@ -15,16 +15,16 @@ const Layout: React.FC<LayoutProps> = props => {
   const { currentThemeType = 'light', toggleTheme } = currentTheme;
   return (
     <div
-      className="content"
+      className={styles.content}
       style={currentTheme[currentThemeType] as React.CSSProperties}
     >
       <Menus />
-      <div className="content-wrapper">
+      <div className={styles['content-wrapper']}>
         { children }
       </div>
       <span
         onClick={toggleTheme}
-        className={`theme-toggle ${currentThemeType}`}
+        className={`${styles['theme-toggle']} ${styles[currentThemeType]}`}
       />
     </div>
   );

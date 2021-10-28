@@ -12,6 +12,7 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noUnusedLocals": true,
+    "rootDirs": ["."],
     "baseUrl": "./",
     "paths": {
       "@/*": [
@@ -31,7 +32,8 @@
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",

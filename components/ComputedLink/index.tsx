@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useRouter } from 'next/router';
 
-import './style.less';
+import styles from './style.module.css';
 
 type CompputedLinkProps = {
   children: React.ReactElement;
@@ -16,7 +16,7 @@ const ComputedLink: React.FC<CompputedLinkProps> = ({ children, href, style }) =
     await router.push(href);
   };
   return (
-    <a href={href} style={style} onClick={handleLinkClick} className="link">
+    <a href={href} style={style} onClick={handleLinkClick} className={styles.link}>
       {React.cloneElement(children, {
         isActive: href === router.pathname
       })}

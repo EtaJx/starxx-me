@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import type { AppProps } from 'next/app';
-import '@/styles/globals.less';
+import '@/styles/globals.css';
 
 const Starxme: React.FC<AppProps> = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;

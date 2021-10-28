@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
 }
-.menu-link{
+.menu-link {
   display: block;
   text-align: center;
   font-size: 16px;
@@ -18,9 +18,9 @@
   padding: 10px;
   color: #999;
   transition: all ease-in-out .3s;
-  &:hover{
-    color: #58B2DC;
-  }
+}
+.menu-link:hover{
+  color: #58B2DC;
 }
 .menu-link-active{
   color: #58B2DC;

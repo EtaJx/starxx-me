@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { folderIncludeFiles, folderStruct } from '@/typings/list';
 import File from '../File';
-import './style.less';
+import styles from './style.module.css';
 
 type FolderProps = {
   folder: folderStruct
@@ -12,8 +12,8 @@ const Folder: React.FC<FolderProps> = (props) => {
   console.log(_); // 防止eslint报错
   const { folderName, files } = folderFiles as folderIncludeFiles;
   return (
-    <div className="folder-wrapper">
-      <h4 className="folder-title">{folderName}</h4>
+    <div className={styles['folder-wrapper']}>
+      <h4 className={styles['folder-title']}>{folderName}</h4>
       {
         files && files.map((file) => {
           const { id } = file;

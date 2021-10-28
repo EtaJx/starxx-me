@@ -31,9 +31,9 @@
   font-size: 14px;
   color: #FCFAF2;
   margin: 0;
+}
 
-  a {
-    text-decoration: underline;
-    color: #fff;
-  }
+.hing-dd__item a {
+  text-decoration: underline;
+  color: #fff;
 }

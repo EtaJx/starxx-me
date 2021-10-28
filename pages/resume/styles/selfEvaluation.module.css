@@ -4,9 +4,9 @@
   padding: 0 20px;
   margin-left: auto;
   margin-right: auto;
-  ul{
-    padding-left: 18px;
-  }
+}
+.hing-div__selfevaluation ul{
+  padding-left: 18px;
 }
 
 .hing-p__evaluation {
@@ -14,9 +14,9 @@
   max-width: 600px;
   margin: 0 auto;
 }
-.hing-li__evaluation{
+.hing-li__evaluation {
   font-size: 14px;
-  a{
-    color: #58B2DC;
-  }
+}
+.hing-li__evaluation a{
+  color: #58B2DC;
 }

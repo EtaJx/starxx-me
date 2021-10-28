@@ -11,9 +11,16 @@ export default (req: any, res: any) => {
         result: JSON.parse(content.toString())
       });
     }
-    res.statusCode = 200;
-    res.json({
-      result: JSON.parse(context.toString())
-    });
+    if (context) {
+      res.statusCode = 200;
+      res.json({
+        result: JSON.parse(context.toString())
+      });
+    } else {
+      res.statusCode = 500;
+      res.json({
+        status: 'waiting'
+      });
+    }
   });
 };

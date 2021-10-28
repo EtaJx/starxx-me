@@ -122,6 +122,7 @@ const getFilesList = (auth: OAuth2Client, pageToken?: string) => {
       }
       console.log('-------loading next page--------');
       await constructFolderStructure(drive, files);
+      console.log('-----nextPageToken', nextPageToken);
       if (nextPageToken) {
         await getFilesList(auth, nextPageToken);
       } else {
@@ -150,7 +151,6 @@ export const fetchFileContent = (id: string) => {
           fields: 'id, name, mimeType, modifiedTime'
         }).then((res: any) => {
           if (res) {
-            console.log('res', res);
             const { data: { name, modifiedTime } } = res;
             const contentChunk: string[] = [];
             drive.files.get({

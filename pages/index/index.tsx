@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { folderStructs } from '@/typings/list';
 import List from './List';
-import './style.less';
+import styles from './style.module.css';
 
 type ListProps = {
   result: folderStructs
@@ -18,7 +18,7 @@ const Home: React.FC<ListProps> = (props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className="index-wrapper">
+        <div className={styles['index-wrapper']}>
           {/* <div className="bubble" /> */}
           <List folderList={result} />
         </div>

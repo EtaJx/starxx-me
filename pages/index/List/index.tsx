@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { folderStructs } from '@/typings/list';
 import Folder from './Folder';
-import './style.less';
+import styles from './style.module.css';
 
 type ListDataProps = {
   folderList: folderStructs
@@ -9,13 +9,13 @@ type ListDataProps = {
 const List: React.FC<ListDataProps> = props => {
   const { folderList } = props;
   return (
-    <div className="list-wrapper">
+    <div className={styles['list-wrapper']}>
       {
         folderList && folderList.map((folder) => {
           const [key] = folder;
           return (
             <div key={key as string}>
-            <Folder folder={folder} />
+              <Folder folder={folder} />
             </div>
           );
         })

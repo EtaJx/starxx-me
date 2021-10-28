@@ -1,5 +1,5 @@
 .content{
-  background: url("~/texture.png") repeat 0 0;
+  background: url("/texture.png") repeat 0 0;
   //background-color: #f3f3f3;
   position: relative;
   transition: ease-in-out all .5s;
@@ -19,11 +19,11 @@
 }
 
 .light{
-  background: url("~/light-sun.svg") no-repeat 0 0;
+  background: url("/light-sun.svg") no-repeat 0 0;
   background-size: 30px 30px;
 }
 
 .dark{
-  background: url("~/dark-sun.svg") no-repeat 0 0;
+  background: url("/dark-sun.svg") no-repeat 0 0;
   background-size: 30px 30px;
 }

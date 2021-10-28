@@ -4,7 +4,7 @@ import ResumeContent from './Content';
 import ResumeSelfEvaluation from './SelfEvaluation';
 import Layout from '@/components/Layout';
 
-import './style.less';
+import styles from './style.module.css';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 
@@ -18,7 +18,7 @@ const Resume: React.FC<any> = props => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className="resume-wrapper">
+        <div className={styles['resume-wrapper']}>
           <ResumeHeader intro={intro} />
           <ResumeContent resume={resume} />
           <ResumeSelfEvaluation evaluation={evaluation} />
