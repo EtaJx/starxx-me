@@ -51,6 +51,41 @@ const createFolderDataStructure = () => {
   });
 };
 
+const getFilesList = (auth: OAuth2Client, pageToken?: string) => {
+  const drive = google.drive({
+    version: 'v3',
+    auth
+  });
+  return new Promise((resolve: any) => {
+    // google drive api 的 pageSize 参数最大为1000
+    // 目前直接全部请求
+    // 是否有超时可能？
+    // 超过1000的处理？
+    // TODO
+    drive.files.list({
+      pageSize: 1000,
+      q: "mimeType='text/markdown'",
+      fields: 'nextPageToken, files(id, name, parents, modifiedTime)',
+      corpora: 'user',
+      pageToken
+    }, async (err: any, res: any) => {
+      const { data: { files, nextPageToken } } = res;
+      if (err) {
+        throw Error(`download files list failed ${err} ${res}`);
+      }
+      console.log('-------loading next page--------');
+      await constructFolderStructure(drive, files);
+      console.log('-----nextPageToken', nextPageToken);
+      if (nextPageToken) {
+        await getFilesList(auth, nextPageToken);
+      } else {
+        const createFolderDataResult = await createFolderDataStructure();
+        resolve(createFolderDataResult);
+      }
+    });
+  });
+};
+
 const getAccessToken = (oAuth2Client: OAuth2Client) => {
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
@@ -94,41 +129,6 @@ const authorize = (credentials: any): Promise<OAuth2Client> => {
       const tokenString = token.toString();
       oAuth2Client.setCredentials(JSON.parse(tokenString));
       resolve(oAuth2Client);
-    });
-  });
-};
-
-const getFilesList = (auth: OAuth2Client, pageToken?: string) => {
-  const drive = google.drive({
-    version: 'v3',
-    auth
-  });
-  return new Promise((resolve: any) => {
-    // google drive api 的 pageSize 参数最大为1000
-    // 目前直接全部请求
-    // 是否有超时可能？
-    // 超过1000的处理？
-    // TODO
-    drive.files.list({
-      pageSize: 1000,
-      q: "mimeType='text/markdown'",
-      fields: 'nextPageToken, files(id, name, parents, modifiedTime)',
-      corpora: 'user',
-      pageToken
-    }, async (err: any, res: any) => {
-      const { data: { files, nextPageToken } } = res;
-      if (err) {
-        throw Error(`download files list failed ${err} ${res}`);
-      }
-      console.log('-------loading next page--------');
-      await constructFolderStructure(drive, files);
-      console.log('-----nextPageToken', nextPageToken);
-      if (nextPageToken) {
-        await getFilesList(auth, nextPageToken);
-      } else {
-        const createFolderDataResult = await createFolderDataStructure();
-        resolve(createFolderDataResult);
-      }
     });
   });
 };
