@@ -1,6 +1,6 @@
 .content{
   background: url("/texture.png") repeat 0 0;
-  //background-color: #f3f3f3;
+  min-height: 100%;
   position: relative;
   transition: ease-in-out all .5s;
 }

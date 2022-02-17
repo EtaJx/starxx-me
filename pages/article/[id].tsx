@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { materialLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import Layout from '@/components/Layout';
 import styles from './style.module.css';
 import Head from 'next/head';
@@ -20,8 +20,9 @@ const codeComponent: React.FC<any> = ({ node, inline, className, children, ...pr
     ? (
       <SyntaxHighlighter
           children={String(children).replace(/\n$/, '')}
-          style={atomOneLight}
+          style={materialLight}
           language={match[1]}
+          showLineNumbers
           PreTag="div"
           {...props}
         />
@@ -44,7 +45,7 @@ const Article: React.FC<ArticleProps> = (props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Layout>
-        <div className={styles.articleWrapper}>
+        <div className={styles['article-wrapper']}>
           <h4 className={styles['article-title']}>{adjustName}</h4>
           <span className={styles['article-time']}>{articleTime}</span>
           <ReactMarkdown children={content} components={{
