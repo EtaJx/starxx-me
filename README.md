@@ -8,3 +8,7 @@ new version personal pages
 
 #### 2021-11-03
 - Upgrade packages
+
+#### 2022-06-25
+- [ ] upgrade css to tailwindcss
+- [ ] schedule update article list
