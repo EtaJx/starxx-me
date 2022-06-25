@@ -121,6 +121,7 @@ const authorize = (credentials: any): Promise<OAuth2Client> => {
   return new Promise((resolve: any) => {
     // eslint-disable-next-line camelcase
     const { client_secret, client_id, redirect_uris } = credentials.installed;
+    // eslint-disable-next-line camelcase
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
     fs.readFile(TOKEN_PATH, (err, token) => {
       if (err) {
