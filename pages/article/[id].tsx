@@ -37,7 +37,7 @@ const codeComponent: React.FC<any> = ({ node, inline, className, children, ...pr
 const Article: React.FC<ArticleProps> = (props) => {
   const { name, content, modifiedTime } = props;
   const adjustName = name.replace('.md', '');
-  const articleTime = moment(modifiedTime).utc().utcOffset(+8).locale('zh-CN').format('lll');
+  const articleTime = moment(modifiedTime).utcOffset(+8).format('llll');
   return (
     <>
       <Head>
