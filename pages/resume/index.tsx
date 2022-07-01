@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import ResumeHeader from './Header';
-import ResumeContent from './Content';
-import ResumeSelfEvaluation from './SelfEvaluation';
+import ResumeHeader from '@/components/pages/resume/Header';
+import ResumeContent from '@/components/pages/resume/Content';
+import ResumeSelfEvaluation from '@/components/pages/resume/SelfEvaluation';
 import Layout from '@/components/Layout';
 
 import styles from './style.module.css';

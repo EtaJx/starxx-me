@@ -12,3 +12,4 @@ _post/
 out/
 data.json
 report.*.json
+dist

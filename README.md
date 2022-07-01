@@ -12,3 +12,4 @@ new version personal pages
 #### 2022-06-25
 - [ ] upgrade css to tailwindcss
 - [ ] schedule update article list
+- [x] update webhook events

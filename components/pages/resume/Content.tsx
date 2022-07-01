@@ -1,7 +1,7 @@
 import React from 'react';
 import Skill from './Skill';
 import { ContentType } from '@/typings/resume';
-import styles from './styles/content.module.css';
+import styles from '@/styles/resume/Content.module.css';
 
 const Content: React.FC<ContentType.Props> = (props) => {
   const { resume = {} } = props;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { EvaluationType } from '@/typings/resume';
-import styles from './styles/selfEvaluation.module.css';
+import styles from '@/styles/resume/SelfEvaluation.module.css';
 
 const SelfEvaluation: React.FC<EvaluationType.Props> = props => {
   const { evaluation = [] } = props;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles/skill.module.css';
+import styles from '@/styles/resume/Skill.module.css';
 import { SkillType } from '@/typings/resume';
 
 const Skill: React.FC<SkillType.Props> = props => {

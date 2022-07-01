@@ -1,27 +1,23 @@
 .hing-div__intro__wrapper {
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  @apply max-w-[37.5rem] ml-auto mr-auto;
 }
 
 .hing-div__content {
-  width: 100%;
+  @apply w-[100%];
   border-bottom: 1px solid #e3e3e3;
 }
 .hing-div__content ul{
-  padding-left: 18px;
+  @apply pl-[1.125rem];
 }
 .hing-div__content ul li {
-  font-size: 14px;
+  @apply text-[0.875rem];
 }
 .hing-div__content ul li a{
   color: #58B2DC;
 }
 
 .hing-div__experience {
-  width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
+  @apply w-[100%] py-0 px-[1.25rem] box-border;
 }
 
 .hing-div__skills {
@@ -37,13 +33,9 @@
 }
 
 .hing-span__skill {
-  float: left;
+  @apply float-left mb-[0.25rem] mr-[0.625rem] border-r-[0.25rem] py-[0.125rem] px-[0.25rem];
   border: 1px solid transparent;
-  margin-bottom: 4px;
   box-shadow: 1px 1px 1px #e3e3e3;
-  border-radius: 4px;
-  margin-right: 10px;
-  padding: 2px 5px;
   background-color: #5DAC81;
   color: #fff;
 }

@@ -4,10 +4,11 @@ import File from '../File';
 import styles from './style.module.css';
 
 type FolderProps = {
-  folder: folderStruct
+  folder: folderStruct,
+  trigger: () => void,
 };
 const Folder: React.FC<FolderProps> = (props) => {
-  const { folder = [] } = props;
+  const { folder = [], trigger } = props;
   const [_, folderFiles = {}] = folder;
   console.log(_); // 防止eslint报错
   const { folderName, files } = folderFiles as folderIncludeFiles;
@@ -18,7 +19,7 @@ const Folder: React.FC<FolderProps> = (props) => {
         files && files.map((file) => {
           const { id } = file;
           return (
-            <div key={id}>
+            <div key={id} onClick={trigger}>
               <File file={file} />
             </div>
           );

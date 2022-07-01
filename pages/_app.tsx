@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import type { AppProps } from 'next/app';
 import '@/styles/globals.css';
 
-const Starxme: React.FC<AppProps> = ({ Component, pageProps }) => {
+const StarxxMe: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (<>
     <Component {...pageProps} />
     <style jsx global>{
@@ -14,4 +14,4 @@ const Starxme: React.FC<AppProps> = ({ Component, pageProps }) => {
     </>);
 };
 
-export default memo(Starxme);
+export default memo(StarxxMe);

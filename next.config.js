@@ -1,5 +1,5 @@
 const path = require('path');
-module.exports = {
+module.exports = ({
   webpack: config => {
     config.resolve.alias['@'] = path.resolve(__dirname, './');
     return config;
@@ -10,4 +10,4 @@ module.exports = {
       destination: '/index'
     }];
   }
-};
+});
