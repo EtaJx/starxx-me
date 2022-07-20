@@ -7,9 +7,13 @@ import { GetTokenResponse } from 'google-auth-library/build/src/auth/oauth2clien
 
 const SCOPES = ['https://www.googleapis.com/auth/drive'];
 const TOKEN_PATH = 'token.json';
-const DATA_PATH = 'data.json';
+const DATA_PATH = path.resolve(process.cwd(), './data.json');
 const ROOT_PATH = process.cwd();
 const FOLDERS_MAP = new Map();
+
+export const clearDataMap = () => {
+  FOLDERS_MAP.clear();
+};
 
 const constructFolderStructure = async (drive: any, files = []) => {
   for (const file of files) {
@@ -39,8 +43,12 @@ const constructFolderStructure = async (drive: any, files = []) => {
 };
 
 const createFolderDataStructure = () => {
-  return new Promise((resolve: any, reject: any) => {
+  return new Promise((resolve: any) => {
     const filesFromMap = Array.from(FOLDERS_MAP);
+    /**
+     * before write file, clear old data file
+     */
+    clearDataMap();
     fs.writeFile(DATA_PATH, JSON.stringify(filesFromMap), err => {
       if (err) {
         throw err;
@@ -58,12 +66,8 @@ const getFilesList = (auth: OAuth2Client, pageToken?: string) => {
   });
   return new Promise((resolve: any) => {
     // google drive api 的 pageSize 参数最大为1000
-    // 目前直接全部请求
-    // 是否有超时可能？
-    // 超过1000的处理？
-    // TODO
     drive.files.list({
-      pageSize: 1000,
+      pageSize: 20,
       q: "mimeType='text/markdown'",
       fields: 'nextPageToken, files(id, name, parents, modifiedTime)',
       corpora: 'user',
@@ -91,7 +95,7 @@ const getAccessToken = (oAuth2Client: OAuth2Client) => {
     access_type: 'offline',
     scope: SCOPES
   });
-  console.log('Authorize this app bu visition this url:', authUrl);
+  console.log('Authorize this app by visit this url:', authUrl);
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
