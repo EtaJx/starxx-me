@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
+import React, { memo, useId } from 'react';
 import { folderStructs } from '@/typings/list';
 import Folder from './Folder';
 import styles from './style.module.css';
 import useLoading from '@/hooks/useLoading';
-import loadingImg from '@/public/loading.svg';
+import Loading from '@/components/Loading';
 
 type ListDataProps = {
   folderList: folderStructs
@@ -13,20 +13,17 @@ const List: React.FC<ListDataProps> = props => {
   const { data, events } = useLoading();
   const { loading } = data;
   const { toggleLoading } = events;
+  const wrapperId = useId();
   return (
     <div className={styles['list-wrapper']}>
       {
-        loading && (
-          <div className={styles.loading}>
-            <img src={loadingImg.src} className={styles['loading-icon']} />
-        </div>
-        )
+        loading && <Loading />
       }
       {
         folderList && folderList.map((folder) => {
           const [key] = folder;
           return (
-            <div key={key as string}>
+            <div key={key as string} id={`${wrapperId}-${key}`}>
               <Folder folder={folder} trigger={toggleLoading} />
             </div>
           );

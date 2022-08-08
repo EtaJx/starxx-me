@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useId } from 'react';
 import { folderIncludeFiles, folderStruct } from '@/typings/list';
 import File from '../File';
 import styles from './style.module.css';
@@ -9,12 +9,12 @@ type FolderProps = {
 };
 const Folder: React.FC<FolderProps> = (props) => {
   const { folder = [], trigger } = props;
-  const [_, folderFiles = {}] = folder;
-  console.log(_); // 防止eslint报错
+  const [folderId, folderFiles = {}] = folder;
+  const id = useId();
   const { folderName, files } = folderFiles as folderIncludeFiles;
   return (
     <div className={styles['folder-wrapper']}>
-      <h4 className={styles['folder-title']}>{folderName}</h4>
+      <h4 className={styles['folder-title']} id={`${id}-${folderId}`}>{folderName}</h4>
       {
         files && files.map((file) => {
           const { id } = file;

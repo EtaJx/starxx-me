@@ -5,11 +5,3 @@
   box-sizing: border-box;
   color: #999;
 }
-
-.loading{
-  @apply w-[100%] h-[100vw] fixed top-0 left-0 flex justify-center;
-  background-color: rgba(0, 0, 0, .12);
-}
-.loading-icon{
-  @apply w-[7.5rem] h-[7.5rem] relative top-[7.5rem];
-}
