@@ -33,10 +33,11 @@ const constructFolderStructure = async (drive: any, files = []) => {
         files: [file]
       });
     } else {
-      const { folderName, files: tempFiles = [] } = FOLDERS_MAP.get(parents[0]);
+      const { folderName, files: readyFiles = [] } = FOLDERS_MAP.get(parents[0]);
       FOLDERS_MAP.set(parents[0], {
         folderName,
-        files: [...tempFiles, file]
+        id: parents[0],
+        files: [...readyFiles, file]
       });
     }
   }
@@ -190,7 +191,7 @@ export const fetchFileContent = (id: string) => {
 /**
  * 初始化GoogleDriveAPI
  */
-export const initGooleDriverAuthor = (): Promise<Buffer | []> => {
+export const initGoogleDriverAuthor = (): Promise<Buffer | []> => {
   return new Promise((resolve: any) => {
     const credentials = path.resolve(ROOT_PATH, './credentials.json');
     // 读取本地credentials文件

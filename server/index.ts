@@ -16,6 +16,7 @@ const app = next({
   port
 });
 
+console.log('dev', dev, process.env.NODE_ENV);
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {

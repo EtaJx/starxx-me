@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { readFile } from 'fs/promises';
-import { initGooleDriverAuthor } from '@/lib/utils';
+import { initGoogleDriverAuthor } from '@/lib/utils';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     content = await fsPromise;
   } catch (err) {
     console.log('fetching data...');
-    content = await initGooleDriverAuthor();
+    content = await initGoogleDriverAuthor();
   }
   res.statusCode = 200;
   res.json({

@@ -47,7 +47,7 @@ const Article: React.FC<ArticleProps> = (props) => {
       <Layout>
         <div className={styles['article-wrapper']}>
           <h4 className={styles['article-title']}>{adjustName}</h4>
-          <span className={styles['article-time']}>{articleTime}</span>
+          <span className={styles['article-time']}>Last updated on {articleTime}</span>
           <ReactMarkdown children={content} components={{
             code: codeComponent
           }}/>
