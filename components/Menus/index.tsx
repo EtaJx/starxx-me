@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, ReactElement } from 'react';
 import ComputedLink from '@/components/ComputedLink';
 import { MENUS } from './menus.config';
 
@@ -6,7 +6,8 @@ import styles from './style.module.css';
 
 type MenuLinkProps = {
   label: string,
-  isActive?: boolean
+  isActive?: boolean,
+  children?: ReactElement
 }
 
 const MenuLink: React.FC<MenuLinkProps> = memo(props => {
