@@ -1,15 +1,6 @@
-new version personal pages
+# A place to note/record/write some stuff.
+[starxx.me](https://starxx.me)
 
-- [x] eslint
-- [x] change GoogleDriveAPI method to promise
-- [x] handle markdown(highlight code)
-- [x] dark / light
-- [ ] ~~服务器打包内存溢出: exit code 137~~
+- using [`Google Drive`](https://www.google.com/drive/) to sync my local markdowns
+- using [`node schedule`](https://github.com/node-schedule/node-schedule) to do regular updates
 
-#### 2021-11-03
-- Upgrade packages
-
-#### 2022-06-25
-- [ ] upgrade css to tailwindcss
-- [ ] schedule update article list
-- [x] update webhook events
