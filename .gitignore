@@ -5,9 +5,11 @@ node_modules
 .vscode
 key
 .idea/
-lib/token.json
+token.json
 credentials.json
 _files/
 _post/
 out/
 data.json
+report.*.json
+dist

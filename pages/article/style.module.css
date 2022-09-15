@@ -1,0 +1,28 @@
+.article-wrapper {
+  @apply max-w-[1280px] text-[14px] m-auto;
+  padding: 0 60px 20px 60px;
+  box-sizing: border-box;
+}
+.article-wrapper img{
+  width: 100%;
+  height: auto;
+}
+
+.article-wrapper a{
+  color: #58B2DC;
+}
+.article-title{
+  font-size: 22px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0;
+}
+.article-time{
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  color: #666;
+  padding-bottom: 20px;
+}

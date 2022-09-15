@@ -1,0 +1,18 @@
+.content{
+  @apply relative bg-global bg-repeat bg-center min-h-[100%] ;
+  transition: ease-in-out all .5s;
+}
+.content-wrapper{
+  @apply box-border w-[100%];
+}
+.theme-toggle{
+  @apply fixed bottom-[20px] right-[20px] block w-[30px] h-[30px] cursor-pointer;
+}
+
+.light{
+  @apply bg-light bg-no-repeat bg-left-top bg-theme-toggle;
+}
+
+.dark{
+  @apply bg-dark bg-no-repeat bg-left-top bg-theme-toggle
+}

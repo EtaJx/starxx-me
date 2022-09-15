@@ -1,31 +1,52 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "ESNext",
     "module": "esnext",
     "allowJs": true,
+    "checkJs": true,
     "jsx": "preserve",
+    "declaration": true,
+    "sourceMap": true,
     "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noUnusedLocals": true,
+    "rootDirs": ["."],
     "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
-  "exclude": [
-    "node_modules"
-  ],
   "include": [
-    "./*",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ]
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }

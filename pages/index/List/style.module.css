@@ -1,0 +1,7 @@
+.list-wrapper{
+  position: relative;
+  padding-top: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #999;
+}

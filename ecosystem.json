@@ -1,0 +1,13 @@
+{
+  "apps": [{
+    "name": "starxx-me",
+    "script": "./dist/server/index.js",
+    "watch": true,
+    "env_prod": {
+      "NODE_ENV": "production"
+    },
+    "env_dev": {
+      "NODE_ENV": "development"
+    }
+  }]
+}

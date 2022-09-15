@@ -1,21 +1,21 @@
 export namespace SkillType { // 技能
-  type Item = {
+  interface Item {
     title: string,
     val: string[]
   }
-  type Props = {
+  interface Props {
     skill: Item
   }
 }
 
 export namespace EvaluationType {
-  type Props = {
+  interface Props {
     evaluation: string[]
   }
 }
 
 export namespace ContentType {
-  type ExperienceItem = {
+  interface ExperienceItem {
     company: string,
     key: string,
     time: string,
@@ -24,11 +24,11 @@ export namespace ContentType {
     skills?: string[],
     department?: string
   }
-  type ExperienceResume = {
+  interface ExperienceResume {
     skill: Skill,
     experience: ExperienceItem[]
   }
-  type Props = {
+  interface Props {
     resume: ExperienceResume
   }
 }
