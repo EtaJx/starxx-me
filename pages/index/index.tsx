@@ -19,7 +19,6 @@ const Home: React.FC<ListProps> = (props) => {
       </Head>
       <Layout>
         <div className={styles['index-wrapper']}>
-          {/* <div className="bubble" /> */}
           <List folderList={result} />
         </div>
       </Layout>

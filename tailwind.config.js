@@ -6,9 +6,18 @@ module.exports = {
   ],
   theme: {
     colors: {
-      loading: 'rgba(0, 0, 0, .12)'
+      loading: 'rgba(0, 0, 0, .5)'
     },
-    extend: {}
+    backgroundSize: {
+      'theme-toggle': '30px'
+    },
+    extend: {
+      backgroundImage: {
+        global: 'url("/texture.png")',
+        light: 'url("/light-sun.svg")',
+        dark: 'url("/dark-sun.svg")'
+      }
+    }
   },
   plugins: []
 };

@@ -8,7 +8,7 @@ rule.hour = [0, 6, 12, 18];
 
 export const startSchedule = () => {
   schedule.scheduleJob(rule, async () => {
-    console.log('start update list');
+    console.log('start update schedule');
     await initGoogleDriverAuthor();
   });
 };

@@ -1,29 +1,18 @@
 .content{
-  background: url("/texture.png") repeat 0 0;
-  min-height: 100%;
-  position: relative;
+  @apply relative bg-global bg-repeat bg-center min-h-[100%] ;
   transition: ease-in-out all .5s;
 }
 .content-wrapper{
-  box-sizing: border-box;
-  width: 100%;
+  @apply box-border w-[100%];
 }
 .theme-toggle{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: block;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
+  @apply fixed bottom-[20px] right-[20px] block w-[30px] h-[30px] cursor-pointer;
 }
 
 .light{
-  background: url("/light-sun.svg") no-repeat 0 0;
-  background-size: 30px 30px;
+  @apply bg-light bg-no-repeat bg-left-top bg-theme-toggle;
 }
 
 .dark{
-  background: url("/dark-sun.svg") no-repeat 0 0;
-  background-size: 30px 30px;
+  @apply bg-dark bg-no-repeat bg-left-top bg-theme-toggle
 }

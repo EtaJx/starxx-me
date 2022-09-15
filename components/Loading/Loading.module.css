@@ -2,5 +2,5 @@
   @apply w-[100%] h-[100vh] fixed top-0 left-0 flex justify-center bg-loading;
 }
 .loading-icon{
-  @apply w-[7.5rem] h-[7.5rem] relative top-[40%] left-0
+  @apply w-[7.5rem] h-[7.5rem] relative top-[40%] left-0;
 }
